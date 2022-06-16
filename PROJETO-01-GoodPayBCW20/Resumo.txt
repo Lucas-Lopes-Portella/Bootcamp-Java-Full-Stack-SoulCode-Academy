@@ -1,0 +1,20 @@
+1º Projeto em grupo realizado no Bootcamp Java Full Stack da SoulCode Academy. 
+
+
+Equipe 08: 
+Rafael Tabolka ( https://github.com/RafaelTabolka?tab=following ); 
+Pedro Lopes; 
+Lucas Lopes ( https://github.com/Lucas-Lopes-Portella ); 
+Bruno Caio ( https://github.com/BrunoCaio7 ); 
+Marlon ( https://github.com/MarlonFer77?tab=following ).
+
+
+Fomos responsáveis pela criação da página registro.html, onde foram implementados:
+- criação do formulário;
+- validação do formulário;
+- criação do carrossel rotativo;
+- link com as outras páginas do projeto;
+- estilização da página.
+
+
+Tecnologias utilizadas: HTML5, CSS3, Bootstrap, Javascript, Git, Github.

@@ -1,0 +1,91 @@
+/* 
+
+as folhas de estilo são lidas de cima para baixo. 
+
+
+display --> serve para organizar os componentes dentro da página. Ex: um ao lado do outro.
+VALOR: 
+- block: especifica que o elemento vai ocupar a linha inteira.
+Elementos que se comportam, por padrão, como bloco. Quebra linha no final do elemento. div; titulos; paragrafos; form; header; section; article; aside; nav; footer.
+
+- inline: especifica que o elemento não ocupa a linha inteira. Ocupa apenas o espaço do proprio elemento. Não há quebra de linha ao final do elemento. a; img; span
+
+- inline-block:  permite alterar a altura, largura e margem de um elemento, diferente do display: inline
+
+- flex: possibulita flexibilidade para posicionar os elementos */
+
+.emBloco{
+
+    /* display: block --> padrão */
+    background-color: blue;
+    color: antiquewhite;
+}
+
+.emLinha{
+    background-color: violet;
+    color: darkblue;
+}
+
+.blocoEmLinha{
+    display: inline;
+}
+
+li{
+    display: inline-block;
+    background-color: black;
+    color: goldenrod;
+    font-weight: bolder;
+    text-align: center;
+    /* 
+    as propriedades de altura, largura e margem não funcionam quando o elemento tem a propriedade display como inline. Precisa ser inline-block*/
+   
+    width: 100px;
+    height: 50px;  
+    
+}
+
+.botao{
+    /* display: inline-block; */
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    background-color: rgb(0, 89, 255);
+    color: white;
+    border-radius: 10px;
+    padding: 5px;
+    text-decoration: none;
+    font-weight: 800;
+    height: 50px;
+    width: 50%;
+    line-height: 50px;
+
+
+    
+}
+
+.vermelho{
+    
+    background-color: red;
+    color: white;
+}
+.verde{
+   
+    background-color: green;
+    color: white;
+}
+.verde:hover{
+/* display: none; */
+visibility: hidden;
+}
+.azul{
+    
+    background-color: blue;
+    color: white;
+}
+
+.todasDivs{
+    display: inline-block;
+    width: 200px;
+    height: 50%;
+}

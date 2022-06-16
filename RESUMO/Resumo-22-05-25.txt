@@ -1,0 +1,33 @@
+25-05-2022
+
+REQUISICOES HTTP
+
+hypertext transfer protocol
+
+{
+GET (pegar info do servidor) - pode ser acessado pela URL
+POST (enviar e salvar no servidor) - 
+PUT (atualizar o servidor)
+DELET (exlui algo do servidor)
+
+}
+
+API - Application Programming Interface
+
+PASSO A PASSO
+//promisse --> maneira de trabalhar com programação assincrona. 
+Javascript --> metodo fetch('link');
+
+EX: 
+
+       fetch('https://api.github.com/users/TatianaDChiaccio', {
+            method: 'GET'
+        }).then((resposta) => {
+            return resposta.json();
+        }).then((dados) => {
+            console.log(dados);
+        })
+
+
+CSS
+BOOTSTRAP

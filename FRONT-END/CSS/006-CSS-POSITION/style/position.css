@@ -1,0 +1,80 @@
+/* POSITION 
+
+-> Static
+-> Relative - em relação ao elemento pai
+-> Fixed - Fixado na página
+-> Absolute
+-> sticky (pegajoso)
+
+*/
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.container{
+    background-color:navy;
+    width: 80%;
+    height: 400px;
+}
+
+h1{
+    text-align: center;
+    color: aquamarine;
+}
+
+.divs{
+    display: inline-block;
+    width: 30%; /* referente a pai classe */
+    height: 100px;
+    border: 1px dashed white;
+    color: rgb(186, 245, 225);
+}
+
+.div1{
+    position: relative;
+    top: 50px;
+    left: 10%;
+    background-color: violet;
+    z-index:2; 
+}
+.div2{
+    position:sticky; /* fica grudado na tela enquanto o elemento está dentro do elemento pai */
+    top: 0px;
+    background-color: pink;
+    z-index:1; 
+}
+.div3{
+   position: absolute; /* relativo ao primeiro elemento pai que tem um posicionamento relative */
+   top: 20px;
+   right: 20px;
+   background-color: hotpink; 
+   
+}
+
+.whats{
+    
+    background-color: green;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    line-height: 50px;
+    text-align: center;
+    position: fixed; /* fica grudado na página inteira*/
+    bottom: 5px;
+    right: 5px;
+   
+
+    
+}
+
+a{
+    text-decoration: none;
+    font-weight: bolder;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    font-size: 12px;
+;
+}

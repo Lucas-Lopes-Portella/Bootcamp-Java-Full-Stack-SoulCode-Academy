@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>BOOTSTRAP IV</title>
+</head>
+
+<body>
+    <h1>Trabalhando com Bootstrap - IV</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col bg-danger py-4">
+                <img class="rounded-circle" src="https://picsum.photos/200" alt="PICSUM">
+            </div>
+            <div class="col bg-primary py-4">
+                <img class="img-thumbnail rounded-circle" src="https://picsum.photos/300/200" alt="PICSUM">
+            </div>
+        </div>
+    </div>
+    <div class="alert alert-success alert-dismissible">
+        <strong>Operação realizada com sucesso</strong>
+        <button class="btn btn-close btn-primary " data-bs-dismiss="alert">X</button>
+    </div>
+    <div class="alert alert-danger alert-dismissible">
+        <strong>Sua operação não pôde ser realizada</strong>
+        <button class="btn btn-close btn-primary " data-bs-dismiss="alert">X</button>
+    </div>
+    <br>
+    <br>
+    <div class="container">
+        <div class="progress" style="height: 30px;margin-bottom:30px;">
+            <div id="bp" class="progress-bar progress-bar-striped progress-bar-animated"></div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let barraProgresso = document.querySelector('#bp')
+        let progresso = 0
+        let intProgresso = setInterval(() => {
+            barraProgresso.innerHTML = progresso + '%';
+            barraProgresso.style.width = progresso + '%';
+            progresso++;
+            if(progresso>=100){
+                progresso = 0
+            }
+        }, 200)
+    </script>
+</body>
+
+</html>

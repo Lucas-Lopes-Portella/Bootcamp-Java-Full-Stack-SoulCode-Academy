@@ -1,0 +1,26 @@
+*{
+    background-color: black;
+    color: white;
+}
+h1:hover{
+    color: gold;
+    font-weight: bolder;  
+}
+
+h1{
+    text-align: center;
+}
+
+
+p{
+    text-align: center;
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid rgb(255, 255, 255);
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+p:hover{
+    border: 1px dotted rgb(240, 255, 26);
+}

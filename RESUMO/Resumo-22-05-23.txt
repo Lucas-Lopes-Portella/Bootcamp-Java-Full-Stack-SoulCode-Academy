@@ -1,0 +1,72 @@
+JAVASCRIPT 
+
+Metodo eval
+0x numeros em hexadecimal para decimal
+0b numeros em binario para decimal
+
+let var = prompt("digite um numero binario");
+const decimal = eval(`0b${var}`);
+
+
+DOM
+manipular o html através do javascript
+-arvore DOM
+
+
+
+
+TRANSFORMAR STRING PARA ARRAY
+// Array.from(document.getElementsByTagName('tag'));
+
+
+
+ALTERAR TEXTO DO ELEMENTO
+	let btn = document.getElementsByTagName('button')[2]
+        btn.innerText = 'Alternativo';
+        console.log(btn)
+
+
+	btn.onclick = function () { 
+            alert('voce clicou em mim') 
+	}
+
+
+	 btn.addEventListener('click', () => { btn.innerText('Mudei') })  // recomendado no JAVASCRIPT -- Conceito de programação funcional
+
+
+
+HEAD
+ <script src="dom.js" defer></script>
+/HEAD
+- o defer permite que o navegador leia todo o html para só então rodar o arquivo.js
+
+
+
+RECUPERAÇÃO DE ELEMENTOS HTML DENTRO DO JAVASCRIPT
+
+
+--
+document.getElementsByTagName()[]	- variado
+document.getElementsByName()[]		- variado
+document.getElementsByClassName()[]	- variado
+document.getElementById() 		- unico	
+document.querySelector()  		- unico 
+//recomendável pois é mais flexível
+document.querySelectorAll()		- variado
+//recomendável pois é mais flexível
+
+
+SIMULAÇÃO REQUISIÇÃO API
+
+
+
+
+
+
+
+
+
+CSS
+
+CSS GRID
+display:grid

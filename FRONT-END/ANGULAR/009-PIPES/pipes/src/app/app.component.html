@@ -1,0 +1,21 @@
+<div [ngStyle]="{display:'flex', textAlign:'center'}">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{title | uppercase}}</mat-card-title>
+      <mat-card-subtitle>{{subtitle | lowercase}}</mat-card-subtitle>
+    </mat-card-header>
+
+    <img src="https://picsum.photos/200" alt="img" mat-card-image>
+
+    <mat-card-content>
+      <div>{{obj | json}}</div>
+      <p>Dia da aula: {{data | date:'dd/MM/YY'}}</p>
+    </mat-card-content>
+
+    <mat-card-footer [ngStyle]="{justifyContent:'space-between', margin:'0px 5px'}">
+      <p>Email: l@gmail.com</p>
+      <p><strong>{{10 | currency:'BRL'}}</strong></p>
+      <p>Telefone:(21)99999-9999</p>
+    </mat-card-footer>
+  </mat-card>
+</div>

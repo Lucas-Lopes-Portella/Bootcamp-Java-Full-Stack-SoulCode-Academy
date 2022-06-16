@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+    <script src="./src/index.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <title>App [GoodPay]</title>
+</head>
+
+<body class="trancaTela">
+    <header>
+        <nav class="navbar navbar-light bg-light fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="https://soulcodeacademy.org/">
+                    <!--Modificado-->
+                    <img src="./img/goodplayH.png" alt="logo com texto" width="130" height="60">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" onclick="generatorCaptcha()" >
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                        aria-labelledby="offcanvasNavbarLabel">
+                        <div class="offcanvas-header">
+                            <img src="./img/GoodPay.png" alt="Logo Principal" width="80" height="80">
+                            <h6 class="offcanvas-title" id="offcanvasNavbarLabel">Menu [GoodPay App]</h6>
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
+                        </div>
+                        <!--   was-validated // -->
+    <div class="offcanvas-body needs-validation">
+        <form class="d-flex">
+            <input class="validationServer01 form-control me-2" type="search" placeholder="Search"
+                aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        <div class="accordion accordion-flush" id="accordionFlushExample" style="margin-top: 20px;">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button collapsed" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                        aria-expanded="false" aria-controls="flush-collapseOne">
+                        Entre no GoodPay
+                    </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse"
+                    aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+
+                        <form action="" class="ms-4 was-validated" data-toggle="validator" role="form">
+                            <!-- input-group -->
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Email</span>
+                                <input type="email" class="form-control"
+                                    id="email" value="@" aria-label="email"
+                                    aria-describedby="basic-addon1"
+                                    placeholder="Entre com seu e-mail" required>
+                                <!-- class="form-control" validationCustom01" value="@" required -->
+                                <div class="valid-feedback">
+                                    Parece bom!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Digite um e-mail valido!
+                                </div>
+                            </div>
+                            <div class="is-invalid input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Senha</span>
+                                <!-- class="form-control" validationCustom01" value="@" required -->
+                                <input type="password" class="form-control"
+                                    id="senha" value="#" aria-label="senha"
+                                    aria-describedby="basic-addon1" placeholder="Senha de Login"
+                                    required>
+                                <div class="valid-feedback">
+                                    Parece bom!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Por favor, digite sua senha.
+                                </div>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text bg-success text-light"
+                                    id="basic-addon1">Resolva<span id="v1"></span></span>
+                                <input id="recaptcha" type="number" class="form-control"
+                                    placeholder="Resultado" aria-label="Captcha"
+                                    aria-describedby="basic-addon1">
+                            </div>
+                            <div class="mb-3 text-center text-danger" id="attempts"></div>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-outline-info" type="button"
+                                    onclick="rotaLogin()"
+                                    data-bs-dismiss="offcanvas">Entrar</button>
+                                <button class="btn btn-outline-success" type="button"
+                                    onclick="rotaCadastro()"
+                                    data-bs-dismiss="offcanvas">Cadastrar</button>
+                            </div>
+                        </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-headingTwo">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"
+                                            aria-expanded="false" aria-controls="flush-collapseTwo">
+                                            Regras de uso do Aplicativo
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                        aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <h5>DevTeam <span class="badge bg-success">BCW18</span> </h5>
+                                            <p>
+                                                Este aplicativo não tem conexão com o banco de dados, o desenvolvimento
+                                                deste aplicativo tem como
+                                                finalidade o aprendizado de aplicações e interface web. Assim o uso
+                                                deste
+                                                aplicativo deve ser
+                                                pensado como um
+                                                protótipo não funcional.
+                                            </p>
+                                            <p>
+                                                A aplicação usa elementos de personalização em Bootstrap 5, com
+                                                Javascript
+                                                local,
+                                                os dados utilizados para e adicionados neste interface não são enviados
+                                                a um
+                                                serviço.
+                                            </p>
+                                            <p class="badge bg-secondary">
+                                                BCW18:(FullStack)
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-headingThree">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseThree"
+                                            aria-expanded="false" aria-controls="flush-collapseThree">
+                                            BCW 18 [Java Full Stack]
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseThree" class="accordion-collapse collapse"
+                                        aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <p>
+                                                Curso de Deselvolvimento web baseado em Java Spring no Back-End com
+                                                Angular
+                                                Typescript no
+                                                Front-End. Desenvolvido com metodologias agilistas e usando como base
+                                                Projetos em DevOps.
+                                            </p>
+                                            <div class="text-center">
+                                                <img src="./img/logo-itlean.png" class="rounded" alt="Logo da SoulCode"
+                                                    width="210" height="65">
+                                                <img src="./img/logo-tnt.png" class="rounded" alt="Logo da SoulCode"
+                                                    width="120" height="90">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-headingFour">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseFour"
+                                            aria-expanded="false" aria-controls="flush-collapseFour">
+                                            SoulCode Academy
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseFour" class="accordion-collapse collapse"
+                                        aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <p>
+                                                Tech For Good: 5 pilares que vão transformar o mundo: Educação,
+                                                Diversidade,
+                                                Saúde, Longevidade e
+                                                Sustentabilidade
+                                            </p>
+                                            <p>
+                                                Nossa missão é a formação e o emprego, aplicando os 5 pilares do "Tech
+                                                For
+                                                Good". Ser uma escola
+                                                inclusiva, que, através de nossa metodologia ágil, possa capacitar e
+                                                educar
+                                                em tecnologia, gerar
+                                                oportunidades de emprego para todas as gerações, no início ou na
+                                                ressignificação de carreira, com
+                                                foco em diversidade e equidade. Numa profissão que fomente o bem-estar
+                                                físico e mental, permitindo
+                                                o
+                                                equilíbrio entre a vida profissional e pessoal, através do trabalho
+                                                remoto,
+                                                com flexibilidade de
+                                                horários, além de ser um negócio sustentável e responsável, socialmente.
+                                            </p>
+                                            <p class="badge bg-primary">
+                                                Team SoulCode
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-headingFive">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseFive"
+                                            aria-expanded="false" aria-controls="flush-collapseFive">
+                                            Ajuda
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseFive" class="accordion-collapse collapse"
+                                        aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            
+                                            <p>gp-error#1011 - Email não encontrado </p>
+                                            <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
+                                            data-bs-target="#erro1011">Leia mais...</button> 
+                                            <hr>
+                                            <p>gp-error#1022 - Campo Email vazio </p>
+                                            <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
+                                            data-bs-target="#erro1022">Leia mais...</button>                                                                                                                                   
+                                            <hr>
+                                            <p>gp-error#1033 - Campos vazios</p>
+                                            <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
+                                            data-bs-target="#erro1033">Leia mais...</button>  
+                                            <hr>
+                                            <p>gp-error#1044 - Email ou senha incorreto</p>
+                                            <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
+                                            data-bs-target="#erro1044">Leia mais...</button>  
+                                            <hr>
+                                            <p>gp-error#1055 - Email ou usuário incorreto</p>
+                                            <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
+                                            data-bs-target="#erro1055">Leia mais...</button>  
+                                            <hr>
+                                            <p>gp-error#1066 - Usuário não encontrado</p>
+                                            <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
+                                            data-bs-target="#erro1066">Leia mais...</button> 
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </nav>
+        <!--ERRO 1011 Email não encontrado -->
+<div id="erro1011" class="modal fade">
+    <!--verificar aqui-->
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">gp-error#1011 - Email não encontrado</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Lorem ipsum dolor sit amet. Aut voluptatem consectetur vel tempore laborum nulla commodi
+                    velit fugiat
+                    sit sunt nisi sed quidem quod. Vel similique neque sed iure sunt ut expedita suscipit aut
+                    amet eligendi.
+                    Cum quia accusamus et veritatis alias ut sint rerum id commodi consequuntur aut deserunt
+                    cupiditate non
+                    enim maxime sed quibusdam laudantium. Et molestias voluptas rem officiis atque sit expedita
+                    magni et
+                    cupiditate tempore! Qui aliquid distinctio sed officia repellendus non distinctio architecto
+                    qui atque
+                    quaerat est accusamus illum. Ea culpa atque aut nesciunt tempore a autem deleniti. Aut
+                    debitis nobis a
+                    unde omnis et illo dolores in fugiat dicta qui neque laboriosam. Qui nesciunt illum et
+                    internos expedita
+                    et odit cupiditate quo architecto tenetur sit velit nobis.</p>
+                A informação lhe foi útil?
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                        value="option1">
+                    <label class="form-check-label" for="inlineRadio1">Sim</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                        value="option2">
+                    <label class="form-check-label" for="inlineRadio2">Não</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary botaomodal" data-bs-dismiss="modal">Voltar</button>
+                <button type="button" class="btn btn-secondary botaomodal" data-bs-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-secondary botaomodal" data-bs-dismiss="modal">Fechar e
+                    Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--ERRO 1022 Campo Email vazio -->
+<div id="erro1022" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">gp-error#1022 - Campo Email vazio</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Lorem ipsum dolor sit amet. Aut voluptatem consectetur vel tempore laborum nulla commodi
+                    velit fugiat
+                    sit sunt nisi sed quidem quod. Vel similique neque sed iure sunt ut expedita suscipit aut
+                    amet eligendi.
+                    Cum quia accusamus et veritatis alias ut sint rerum id commodi consequuntur aut deserunt
+                    cupiditate non
+                    enim maxime sed quibusdam laudantium. Et molestias voluptas rem officiis atque sit expedita
+                    magni et
+                    cupiditate tempore! Qui aliquid distinctio sed officia repellendus non distinctio architecto
+                    qui atque
+                    quaerat est accusamus illum. Ea culpa atque aut nesciunt tempore a autem deleniti. Aut
+                    debitis nobis a
+                    unde omnis et illo dolores in fugiat dicta qui neque laboriosam. Qui nesciunt illum et
+                    internos expedita
+                    et odit cupiditate quo architecto tenetur sit velit nobis.</p>
+                A informação lhe foi útil?
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                        value="option1">
+                    <label class="form-check-label" for="inlineRadio1">Sim</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                        value="option2">
+                    <label class="form-check-label" for="inlineRadio2">Não</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary botaomodal" data-bs-dismiss="modal">Voltar</button>
+                <button type="button" class="btn btn-secondary botaomodal" data-bs-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-secondary botaomodal" data-bs-dismiss="modal">Fechar e
+                    Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--ERRO 1033 Campos vazios -->
+<div id="erro1033" class="modal fade">
+    <!--verificar aqui-->
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">gp-error#1033 - Campos vazios</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Lorem ipsum dolor sit amet. Aut voluptatem consectetur vel tempore laborum nulla commodi
+                    velit fugiat
+                    sit sunt nisi sed quidem quod. Vel similique neque sed iure sunt ut expedita suscipit aut
+                    amet eligendi.
+                    Cum quia accusamus et veritatis alias ut sint rerum id commodi consequuntur aut deserunt
+                    cupiditate non
+                    enim maxime sed quibusdam laudantium. Et molestias voluptas rem officiis atque sit expedita
+                    magni et
+                    cupiditate tempore! Qui aliquid distinctio sed officia repellendus non distinctio architecto
+                    qui atque
+                    quaerat est accusamus illum. Ea culpa atque aut nesciunt tempore a autem deleniti. Aut
+                    debitis nobis a
+                    unde omnis et illo dolores in fugiat dicta qui neque laboriosam. Qui nesciunt illum et
+                    internos expedita
+                    et odit cupiditate quo architecto tenetur sit velit nobis.</p>
+                A informação lhe foi útil?
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                        value="option1">
+                    <label class="form-check-label" for="inlineRadio1">Sim</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                        value="option2">
+                    <label class="form-check-label" for="inlineRadio2">Não</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary botaomodal" data-bs-dismiss="modal">Voltar</button>
+                <button type="button" class="btn btn-secondary botaomodal" data-bs-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-secondary botaomodal" data-bs-dismiss="modal">Fechar e
+                    Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--ERRO 1044 Email ou senha incorreto -->
+<div id="erro1044" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">gp-error#1044 - Email ou senha incorreto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Lorem ipsum dolor sit amet. Aut voluptatem consectetur vel tempore laborum nulla commodi
+                    velit fugiat
+                    sit sunt nisi sed quidem quod. Vel similique neque sed iure sunt ut expedita suscipit aut
+                    amet eligendi.
+                    Cum quia accusamus et veritatis alias ut sint rerum id commodi consequuntur aut deserunt
+                    cupiditate non
+                    enim maxime sed quibusdam laudantium. Et molestias voluptas rem officiis atque sit expedita
+                    magni et
+                    cupiditate tempore! Qui aliquid distinctio sed officia repellendus non distinctio architecto
+                    qui atque
+                    quaerat est accusamus illum. Ea culpa atque aut nesciunt tempore a autem deleniti. Aut
+                    debitis nobis a
+                    unde omnis et illo dolores in fugiat dicta qui neque laboriosam. Qui nesciunt illum et
+                    internos expedita
+                    et odit cupiditate quo architecto tenetur sit velit nobis.</p>
+                A informação lhe foi útil?
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                        value="option1">
+                    <label class="form-check-label" for="inlineRadio1">Sim</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                        value="option2">
+                    <label class="form-check-label" for="inlineRadio2">Não</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary botaomodal" data-bs-dismiss="modal">Voltar</button>
+                <button type="button" class="btn btn-secondary botaomodal" data-bs-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-secondary botaomodal" data-bs-dismiss="modal">Fechar e
+                    Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--ERRO 1055 Email ou usuário incorreto -->
+<div id="erro1055" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">gp-error#1055 - Email ou usuário incorreto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Lorem ipsum dolor sit amet. Aut voluptatem consectetur vel tempore laborum nulla commodi
+                    velit fugiat
+                    sit sunt nisi sed quidem quod. Vel similique neque sed iure sunt ut expedita suscipit aut
+                    amet eligendi.
+                    Cum quia accusamus et veritatis alias ut sint rerum id commodi consequuntur aut deserunt
+                    cupiditate non
+                    enim maxime sed quibusdam laudantium. Et molestias voluptas rem officiis atque sit expedita
+                    magni et
+                    cupiditate tempore! Qui aliquid distinctio sed officia repellendus non distinctio architecto
+                    qui atque
+                    quaerat est accusamus illum. Ea culpa atque aut nesciunt tempore a autem deleniti. Aut
+                    debitis nobis a
+                    unde omnis et illo dolores in fugiat dicta qui neque laboriosam. Qui nesciunt illum et
+                    internos expedita
+                    et odit cupiditate quo architecto tenetur sit velit nobis.</p>
+                A informação lhe foi útil?
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                        value="option1">
+                    <label class="form-check-label" for="inlineRadio1">Sim</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                        value="option2">
+                    <label class="form-check-label" for="inlineRadio2">Não</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary botaomodal" data-bs-dismiss="modal">Voltar</button>
+                <button type="button" class="btn btn-secondary botaomodal" data-bs-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-secondary botaomodal" data-bs-dismiss="modal">Fechar e
+                    Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--ERRO 1066 Usuário não encontrado -->
+<div id="erro1066" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">gp-error#1044 - Usuário não encontrado</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Lorem ipsum dolor sit amet. Aut voluptatem consectetur vel tempore laborum nulla commodi
+                    velit fugiat
+                    sit sunt nisi sed quidem quod. Vel similique neque sed iure sunt ut expedita suscipit aut
+                    amet eligendi.
+                    Cum quia accusamus et veritatis alias ut sint rerum id commodi consequuntur aut deserunt
+                    cupiditate non
+                    enim maxime sed quibusdam laudantium. Et molestias voluptas rem officiis atque sit expedita
+                    magni et
+                    cupiditate tempore! Qui aliquid distinctio sed officia repellendus non distinctio architecto
+                    qui atque
+                    quaerat est accusamus illum. Ea culpa atque aut nesciunt tempore a autem deleniti. Aut
+                    debitis nobis a
+                    unde omnis et illo dolores in fugiat dicta qui neque laboriosam. Qui nesciunt illum et
+                    internos expedita
+                    et odit cupiditate quo architecto tenetur sit velit nobis.</p>
+                A informação lhe foi útil?
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                        value="option1">
+                    <label class="form-check-label" for="inlineRadio1">Sim</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                        value="option2">
+                    <label class="form-check-label" for="inlineRadio2">Não</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary botaomodal" data-bs-dismiss="modal">Voltar</button>
+                <button type="button" class="btn btn-secondary botaomodal" data-bs-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-secondary botaomodal" data-bs-dismiss="modal">Fechar e
+                    Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
+    </header>
+    <main>
+
+        <div class="col-md-10" style="margin-left: 10%; margin-right: 10%;">
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" style="margin-top: 10%;">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
+                        aria-label="Slide 4"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="card mb-3">
+                            <img src="./img/BannerGoodPay.png" class="card-img-top" alt="Banner de promoção numero 2">
+                            <div class="card-body">
+                                <h5 class="card-title">Vem para o simples: GoodPay</h5>
+                                <p class="card-text">
+                                    Vamos descomplicar suas finanças, o aplicativo GoodPay tem a proposta de organizar
+                                    suas finanças com uso de tecnologia Javascript. Ele irá montar e organizar seus
+                                    gastos usando uma interface Bootstrap fluida e bem desenvolvida para facilitar seu
+                                    caixa pessoal. A aplicação tem uso simples e servirá para organizar em um vetor de
+                                    objetos suas entradas e saídas baseadas no uso de cards e alertas para seu
+                                    entendimento fácil do uso de suas receitas e gastos.
+                                </p>
+                                <p class="card-text"><small class="text-muted">26 de Maio de 2022</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="card mb-3">
+                            <img src="./img/BannerGoodPay2.png" class="card-img-top" alt="Banner de promoção numero 2">
+                            <div class="card-body">
+                                <h5 class="card-title">Volte para o lado verde da vida</h5>
+                                <p class="card-text">
+                                    Com o GoodPay cash back você economiza e na compra com nossos parceiros ainda
+                                    receberá dinheiro de volta. Mais de 1645 parceiros de compras vão te ajudar
+                                    a voltar para o saldo positivo em seu caixa. As compras com Cashback deveram
+                                    ser feitas em débito ou dinheiro e o retorno vai para o porquinho de seu caixa.
+                                    <br>
+                                    <br>
+                                </p>
+                                <p class="card-text"><small class="text-muted">26 de Maio de 2022</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="card mb-3">
+                            <img src="./img/BannerGoodPay3.png" class="card-img-top" alt="Banner de promoção numero 2">
+                            <div class="card-body">
+                                <h5 class="card-title">The Pig Time</h5>
+                                <p class="card-text">
+                                    Com a assinatura do Pig Time você terá mais de 50 especialistas em finanças para
+                                    dicas de como economizar em cada compra na sua vida. Ainda terá 4 reais de retorno
+                                    para cada vez que for sorteada no Pig Time e ao final de 1 ano poderá ganhar 5x seu
+                                    porquinho. Economizando e investindo ao mesmo tempo na GoodPay App.
+                                    <br>
+                                    <br>
+                                </p>
+                                <p class="card-text"><small class="text-muted">26 de Maio de 2022</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="card mb-3">
+                            <img src="./img/BannerGoodPay4.png" class="card-img-top" alt="Banner de promoção numero 2">
+                            <div class="card-body">
+                                <h5 class="card-title">Dinheiro para curtir o importante</h5>
+                                <p class="card-text">
+                                    Com o GoodPay você economiza e sempre vai ter dinheiro na sua conta, já que temos
+                                    mais de 1645 parceiros que fazem CashBack em diversas compras e ajudamos você com
+                                    suas finanças. Isso significa: voltar para o saldo positivo em seu caixa para que
+                                    aproveite amigos, família e você mesmo! Entre nesta capitalização por R$35 reais e
+                                    ganhe conforto na sua vida financeira.
+                                    <br>
+                                    <br>
+                                </p>
+                                <p class="card-text"><small class="text-muted">26 de Maio de 2022</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+
+
+
+
+
+
+
+
+            
+
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <div class="card-group">
+                        <div class="card">
+                            <img src="img/1.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Planejamento Sempre</h5>
+                                <p class="card-text">Aqui você poderá designar cada parte dos seus rendimentos e planejar para que seu dinheiro posso sempre cuidar mais de você.",
+                                </p>
+
+                                <div class="d-grid gap-2">
+                                    <button type="button " class="btn btn-outline-success" data-bs-toggle="modal"
+                                        data-bs-target="#modalPlanejamentoSempre">
+                                        Leia mais...
+                                    </button>
+                                </div>
+
+
+                                <p class="card-text"><small class="text-muted">17 de dezembro 2021</small></p>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <img src="img/2.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Redes Sociais</h5>
+                                <p class="card-text">Apoie nosso aplicativo seguindo nas redes sociais. No facebook nossa comunidade tem dicas exclusivas para gerenciar os gastos e economizar em coisas pequenas e sem dor no bolso.</p>
+                                <div class="d-grid gap-2">
+                                    <button type="button " class="btn btn-outline-success" data-bs-toggle="modal"
+                                        data-bs-target="#modalRedesSociais">
+                                        Leia mais...
+                                    </button>
+                                </div>
+                                <p class="card-text"><small class="text-muted">17 de dezembro 2021</small></p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="img/3.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Venha e Faça Parte</h5>
+                                <p class="card-text">o Time de desenvolvimento do goodpay é composto por desenvolvedores do BCW 9 da Soul Code Academy venha fazer parte da nossa equipe desenvolvendo suas próprias aplicações.</p>
+                                <div class="d-grid gap-2">
+                                    <button type="button " class="btn btn-outline-success" data-bs-toggle="modal"
+                                        data-bs-target="#modalVenhaEFacaParte">
+                                        Leia mais...
+                                    </button>
+                                </div>
+                                <p class="card-text"><small class="text-muted">17 de dezembro 2021</small></p>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <div class="card-group">
+                        <div class="card">
+                            <img src="img/4.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Money for Live</h5>
+                                <p class="card-text">Com os planos de economia para sair no rolê, marque sua data de saida e só
+                                    guarde em seu cofre todos os meses se você for sorteado ganha 5x o que tiver em seu cofrinho
+                                    para dar aquele UP na suas férias.</p>
+                                    <div class="d-grid gap-2">
+                                        <button type="button " class="btn btn-outline-success" data-bs-toggle="modal"
+                                            data-bs-target="#">
+                                            Leia mais...
+                                        </button>
+                                    </div>
+                                <p class="card-text"><small class="text-muted">23 de dezembro 2021</small></p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="img/5.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Black Friday</h5>
+                                <p class="card-text">Todos os planos do GoodPay com 50% de descontos só não tem desconto quem
+                                    não quer. Esta promoção é valida até dia 6 de janeiro de 2022 e somente para os planos que
+                                    não tem sorteios e capitalização premiada.</p>
+                                    <div class="d-grid gap-2">
+                                        <button type="button " class="btn btn-outline-success" data-bs-toggle="modal"
+                                            data-bs-target="#">
+                                            Leia mais...
+                                        </button>
+                                    </div>
+                                <p class="card-text"><small class="text-muted">23 de dezembro 2021</small></p>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <img src="img/7.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Pequenos Pecados</h5>
+                                <p class="card-text">Ao economizar 250 reais e seu cofrinho o GoodPay lhe dará um vale café e um vale rosquinha para premiar seu empenho em guardar. Vire um guardador e ainda tenho um pequeno prazer no final do mês.</p>
+
+                                    
+                                <div class="d-grid gap-2">
+                                    <button type="button " class="btn btn-outline-success" onclick="alertaPromo()">
+                                        Leia mais...
+                                    </button>
+                                </div>
+
+                                <p class="card-text"><small class="text-muted">Abril 19 de 2022</small></p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <div class="card-group">
+                        <div class="card">
+                            <img src="img/6.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Plano de Educação</h5>
+                                <p class="card-text">Comece a economizar assim que seu filho nascer e concorra todo ano á
+                                    premios percentuais de seu porquinho e se seu beneficiado tirar nota superior à 800 no Mec
+                                    Enem ganhe 3x do seu porquinho na hora para turbinar o prêmio pelo esforço dele.</p>
+                                    <div class="d-grid gap-2">
+                                        <button type="button " class="btn btn-outline-success" data-bs-toggle="modal"
+                                            data-bs-target="#">
+                                            Leia mais...
+                                        </button>
+                                    </div>
+                                <p class="card-text"><small class="text-muted">23 de dezembro 2021</small></p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="img/8.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">GoodPay no cartão</h5>
+                                <p class="card-text">Ao economizar 250 reais e seu cofrinho o GoodPay lhe dará um vale café e um vale rosquinha para premiar seu empenho em guardar. Vire um guardador e ainda tenho um pequeno prazer no final do mês.</p>
+                                <div class="d-grid gap-2">
+                                    <button type="button " class="btn btn-outline-success" data-bs-toggle="modal"
+                                        data-bs-target="#modalGoodPaynoCartao">
+                                        Leia mais...
+                                    </button>
+                                </div>
+                                <p class="card-text"><small class="text-muted">27 de dezembro 2021</small></p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="img/9.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">GoodPay no Cash Back</h5>
+                                <p class="card-text">Todas as compras a vista que não são vinculadas ao seu especial podem render bilhetes para sorteios. Economize 250 no mês e faça compras no cartão de débito sem usar o especial ao final terá bilhetes que podem render desde um voucher de sanduba até 8x seu porquinho.</p>
+                                <div class="d-grid gap-2">
+                                    <button type="button " class="btn btn-outline-success" onclick="alertaPromo2()">
+                                        Leia mais...
+                                    </button>
+                                </div>
+                                <p class="card-text"><small class="text-muted">27 de dezembro 2021</small></p>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+        </div>
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+                <div class="toast-header">
+                <strong class="me-auto">Utilização de dados</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body text-center">
+                    Os dados fornecidos estão protegidos pela 
+                    <a href="http://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm" target="_blank">Lei nº 13.709/201</a>, 
+                    Lei Geral de Proteção de Dados <br> 
+                    <div class="d-grid gap-2">
+                        <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="toast">Entendi!</button>
+                    </div>
+            </div>
+        </div>
+    </main>
+    <!--Modal de Comunicação [Elementos não visíveis]-->
+    <div class="modal fade" id="modalPlanejamentoSempre" tabindex="-1" aria-labelledby="Planejamento Sempre" aria-hidden="true">
+        <div class="modal-dialog modal-xl text-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title col-11 text-center">Planejamento Sempre</h2>
+                    <button type="button" class="btn-close col-1" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body row align-items-center">
+                    <img src="img/1.png" alt="Imagem Planejamento Sempre" class="col-lg-6 col-sm-12">
+                    <p class="fs-2 text-start px-3 col-lg-6 col-sm-12">Aqui você poderá designar cada parte dos seus rendimentos e planejar para que seu dinheiro possa sempre cuidar mais de você.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-success">Planejar</button>
+                    <button type="button" class="btn btn-secondary btn-dark" data-bs-dismiss="modal">Fechar</button>   
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalVenhaEFacaParte" tabindex="-1" aria-labelledby="Venha e Faça Parte" aria-hidden="true">
+        <div class="modal-dialog modal-xl text-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title col-11 text-center">Venha e Faça Parte</h2>
+                    <button type="button" class="btn-close col-1" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body row align-items-center">
+                    <img src="img/3.png" alt="Imagem Venha e Faça Parte" class="col-lg-6 col-sm-12">
+                    <p class="fs-2 text-start px-3 col-lg-6 col-sm-12"> O Time de desenvolvimento do goodpay é composto por desenvolvedores do BCW 20 da Soul Code Academy venha fazer parte da nossa equipe desenvolvendo suas próprias aplicações.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-success">Faça Parte</button>
+                    <button type="button" class="btn btn-secondary btn-dark" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalRedesSociais" tabindex="-1" aria-labelledby="Redes Sociais" aria-hidden="true">
+        <div class="modal-dialog modal-xl text-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title col-11 text-center">Redes Sociais</h2>
+                    <button type="button" class="btn-close col-1" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body row align-items-center">
+                    <img src="img/2.png" alt="Imagem Redes Sociais " class="col-lg-6 col-sm-12">
+                    <p class="fs-2 text-start px-3 col-lg-6 col-sm-12"> Apoie nosso aplicativo seguindo nas redes sociais. No facebook nossa comunidade tem dicas exclusivas para gerenciar os gasto economizar em coisas pequenas e sem dor no bolso.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-primary">Facebook</button>
+                    <button type="button" class="btn btn-outline-danger">Instagram</button>
+                    <button type="button" class="btn btn-secondary btn-dark" data-bs-dismiss="modal">Fechar</button>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalGoodPaynoCartao" tabindex="-1" aria-labelledby="GoodPay no Cartão" aria-hidden="true">
+        <div class="modal-dialog modal-xl text-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title col-11 text-center">GoodPay no Cartão</h2>
+                    <button type="button" class="btn-close col-1" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body row align-items-center">
+                    <img src="img/8.png" alt="Imagem Poupe no Cartão e Ganhe na Vida" class="col-lg-6 col-sm-12">
+                    <p class="fs-2 text-start px-3 col-lg-6 col-sm-12"> Se economizar 250 reais por mês em seu porquinho e comprovar a redução de 15% ou mais na fatura de seu cartão o GoodPay vai te dar 300% do CDI em seu porquinho de acordo como valor que estiver nele. Reduza o cartão e ganhe o CDI.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-success">Economizar agora</button>
+                    <button type="button" class="btn btn-secondary btn-dark" data-bs-dismiss="modal">Fechar</button>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="promo1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="titulo"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <p id="corpo"></p>
+                </div>
+                <div class="modal-footer">
+                    
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Prime</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="campoBranco" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="titulo">Campos Vazios</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="corpo">
+                        Error#1033 - Os campos não podem estar vazios!
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Abrir</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="promo2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="titulo2"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <p id="corpo2"></p>
+                </div>
+                <div class="modal-footer">
+                    
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Prime</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="allusersinfo-el" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="titulo">Todos os usuarios</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="corpo" class="allusers">
+                        
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="loginNegado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginNegado">Erro de Login</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Não foi possível executar o Login. Verifique suas Informações.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<footer>
+    
+    <script src="./src/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+
+</footer>
+
+</html>

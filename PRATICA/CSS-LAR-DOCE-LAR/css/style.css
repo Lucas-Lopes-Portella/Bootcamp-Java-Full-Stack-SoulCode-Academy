@@ -1,0 +1,247 @@
+/* FONTES */
+
+@font-face {
+    font-family: 'minhafonte';
+    src: url(../font/fresh_fruit/Fresh\ Fruit.ttf);
+}
+
+@font-face {
+    font-family: 'minhafonteTitulo';
+    src: url(../font/alone_on_earth/Alone\ On\ Earth.otf);
+}
+
+@font-face {
+    font-family: 'minhafonteTexto';
+    src: url(../font/geo_sans_light/GeosansLight.ttf);
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    background-color: #F6DEB8;
+}
+
+
+
+/* HEADER E MENU */
+
+.cabecalho { /* header */
+    display: flex;
+    background-color: #FACD7F;
+    justify-content: space-between;
+    align-items: center;
+    padding: 36px;
+    margin: 0px 10px 0px 10px;
+}
+
+.cabecalho p { /* LOGO */
+    background-color: #FACD7F;
+    color: #FD6212;
+
+    font-family: 'minhafonte';
+    font-weight: bolder;
+    font-size: 60px;
+
+    margin-left: 10px;
+}
+
+.menu { 
+    text-shadow: 3px 3px 15px white;
+    background-color: #FACD7F;
+}
+
+.menu a { /* LINKS MENU */
+    display: inline;
+    background-color: #FACD7F;
+    color: #59CEE3;
+    font-size: 52px;
+    /*  font-weight: bolder; */
+    font-family: minhaFonteTitulo;
+    margin: 18px;
+}
+
+.menu a:hover {
+    color: white;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/* IMAGEM INTRODUÇÃO */
+
+.divInicial { /* main que contém as imagens */
+    display: flex;
+    justify-content: center;
+}
+
+.organizarFoto { /* figure dentro da main */
+    margin: 0px 10px 10px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+
+
+}
+
+.fotoprincipal { /* imagens */
+    width: 627px;
+    height: auto;
+    margin: 0px 0px 0px 0px;
+
+}
+
+
+/* ADOÇÃO */
+
+.titulo { /* TITULO GERAL -- ADOCAO RESUMO BLOG CONTATO */
+    display: block;
+    font-family: minhaFonteTitulo;
+    font-size: 58px;
+    font-weight: 700;
+    text-align: center;
+    color: white;
+    padding: 10px;
+    /*   border-radius: 5px; */
+    margin: 30px 20px 30px 20px;
+    background-color: #59CEE3;
+}
+
+.secaoDeConteudo { /* Section geral */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 5px;
+}
+ 
+.organizarFotoVetor { /* vetores dentro da section */
+    margin: 100px 200px 100px 200px
+}
+
+.fotoVetor {
+    width: 300px;
+    height: auto;
+    max-height: 600px;
+    border-radius: 15px;
+
+    margin: 5px;
+}
+
+.foto {
+    width: 500px;
+    height: auto;
+    max-height: 600px;
+    border-radius: 15px;
+
+    margin: 5px;
+}
+
+.legenda {
+    font-size: 28px;
+    font-weight: 800;
+    font-family: 'minhafonteTexto';
+    margin-top: 15px;
+    color: black;
+}
+
+/* BLOG */
+
+.artigo {
+    display: flex;
+    font-size: 28px;
+    font-family: 'minhafonteTexto';
+    text-align: justify;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: right;
+    margin: 20px;
+    padding: 10px;
+}
+
+.artigo p {
+    margin: 5px;
+}
+
+.botao {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 50px;
+    background-color: #59CEE3;
+    border: 0px;
+}
+
+a .botao {
+    color: white;
+    font-weight: bolder;
+    font-family: 'minhafonteTexto';
+    font-size: 28px;
+}
+
+.botao:hover {
+    background-color: #FACD7F;
+    cursor: pointer;
+}
+
+.tamanhoFotoResgate {
+    margin-bottom: 100px;
+}
+
+/* CONTATO */
+
+.proporcaoGato {
+    width: 540px;
+    height: auto;
+}
+
+.organizarFotoBLOG {
+    margin: 25px;
+    flex-wrap: wrap;
+}
+
+.organizarFotoBLOG a img:hover {
+    box-shadow: 6px 6px 5px 5px rgb(109, 108, 108)
+}
+
+.sombra {
+    box-shadow: 6px 6px 5px 5px rgb(211, 207, 207)
+}
+
+/* FOOTER */
+.rodape {
+    margin-top: 60px;
+    background-color: #FD6212;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+}
+
+.contato {
+    margin-left: 30px;
+    font-size: 22px;
+    font-weight: bold;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color: white;
+    background-color: #FD6212;
+
+}
+
+.contato p {
+    margin: 5px 0px 5px 0px;
+    background-color: #FD6212;
+    font-family: 'minhaFonteTexto';
+}
+
+.icone {
+    display: flex;
+    width: 20px;
+    height: 20px;
+
+    background-color: #FD6212;
+
+
+}

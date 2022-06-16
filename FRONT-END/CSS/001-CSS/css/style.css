@@ -1,0 +1,29 @@
+@font-face {
+    font-family: "minhafonte";
+    src: url(../fontes/the_californication/The\ Californication.ttf);
+}
+h2{
+    font-family: 'Times New Roman', Times, serif;
+    color: brown;
+    text-align: right;
+    font-family: 'Single Day', cursive;
+    font-size: 32px;
+  
+}
+
+p{
+    text-align: center;
+    font-family: "minhafonte";
+}
+
+.tituloParagrafo{
+    font-weight: bolder;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+#especial{
+    font-weight: bolder;
+    font-size: 20px;
+    color: red;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

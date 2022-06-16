@@ -1,0 +1,167 @@
+TYPESCRIPT
+
+npm i -g typescript  |--> instalar typescript
+
+tsc -v --> tsc -v  |--> versão do typescript
+
+tsc ARQUIVO.TS   |--> transformar .ts em .js
+
+tsc --init   |-->  
+
+tsc -w  |--> atualizar arquivo.js em tempo real
+
+
+JAVA
+código fonte --> bytecode java --> JVM --> sistema operacional
+arquivo java -- java compilador -- arquivo java class -- JVM -- sistema operacional
+
+
+javac ARQUIVO.java --> tranforma o arquivo.java em arquivo.class ---> compilação para o bytecode
+java arquivo --> roda o arquivo 
+
+
+VARIAVEIS		VALOR DEFAULT		INTERVALO			TAMANHO
+
+INTEIROS	
+byte			0			-128 até 127			1byte
+short			0			-32768 até 32767		2bytes
+int			0			-2bilhoes até 2bilhoes		4bytes
+long			0L			...				8bytes
+
+PONTO FLUTUANTE
+float			0.0f			3,4^38f				4bytes
+double			0.0d			1.80^308			8bytes
+			
+chat			"\u0000";		unicode				2bytes
+boolean			false			true ou false			1bit
+
+
+
+PRINTS
+System.out.println("texto");					// relacionado a quebra de linha
+System.out.printf("%s%n", "Exemplo de print com printf");		// relacionado a formatação
+
+OPERADORES ARITMETICOS
++ - * / %
+
+FORMATACAO
+%d	representa números inteiros
+%f	representa números floats
+%2f	representa números doubles
+%b	representa valores booleanos
+%c	representa valores char
+
+casa decimal em f... %.2f
+
+OPERADOR DE ATRIBUICAO
++= -= *= /= 
+
+INCREMENTO
+++ --
+
+
+int a = a + 1; // a++
+int i = 5;
+int z;
+z = ++i; // incrementando o i e atribuindo i para z
+
+System.out.println("valor de z: " + z);
+System.out.println("valor de i: " + i);
+
+z = i++; // atribui o i para z e depois incrementa o i 
+System.out.println("valor de z: " + z);
+System.out.println("valor de i: " + i);
+
+
+OPERADORES LOGICOS
+! && || ^
+
+
+CASTING
+
+       long x = 10;
+       short y = x;
+       System.out.println(y); 
+       // erro, pois a variável short cabe dentro do long, porém a variável long não cabe dentro do short
+       
+
+        //forma correta de fazer (casting): 
+        long x = 10;
+       short y = (short) x;
+       System.out.println(y); 
+
+
+
+VARIÁVEL POR REFERENCIA
+// começa com letra maiúscula
+
+String palavra = 'macaco';
+
+
+
+ESTRUTURAS CONDICIONAIS
+if (condição) {
+	instrucoes;
+} else {
+	instrucoes;
+};
+
+
+OPERADOR TERNÁRIO
+(condicao)? (verdadeiro):(falso)
+
+
+SWITCH
+
+switch(condicao) {
+	case A: 
+		instrucoes;
+	Case B: 
+		instruções;
+	default:
+		instrução padrão;
+}
+
+}
+
+
+
+ESTRUTURAS DE REPETICAO
+
+FOR
+for(int i = 0; i<10;i++){
+            System.out.println(i);
+        }
+
+
+WHILE
+     int contador = 1;
+        while(contador <=10){
+            System.out.println(contador);
+            contador ++;
+        }
+
+
+DO WHILE
+    contador = 20;
+    do {    
+        System.out.println(contador);
+    } while (contador <=10);
+
+    }
+}
+
+
+LEITURA - INPUT
+
+import java.util.Scanner;
+.
+.
+.
+	Scanner leitor = new Scanner(System.in);
+	System.out.println("Digite um número: ");
+	 int numero = 0;
+        numero = leitor.nextInt();
+         System.out.println("O número digitado foi: "+numero);
+
+         leitor.close();

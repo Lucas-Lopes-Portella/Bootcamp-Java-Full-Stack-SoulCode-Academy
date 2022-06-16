@@ -1,0 +1,10 @@
+<div [ngSwitch]="color">
+    <p *ngSwitchCase="'red'" style="color:red">Red</p>
+    <p *ngSwitchCase="'green'" style="color:green">Green</p>
+    <p *ngSwitchCase="'blue'" style="color:blue">Blue</p>
+    <p *ngSwitchDefault>Black</p>
+</div>
+<button (click)="mudarCor('red')">Red</button>
+<button (click)="mudarCor('green')">Green</button>
+<button (click)="mudarCor('blue')">Blue</button>
+<button (click)="mudarCor('black')">Default</button>

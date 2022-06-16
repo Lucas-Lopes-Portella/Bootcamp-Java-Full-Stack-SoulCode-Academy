@@ -1,0 +1,56 @@
+*{
+    background-color: black;
+    margin: 0;
+    padding: 0;
+
+}
+
+header {
+    display: block;
+    text-align: center;
+    border: 1px dashed white;
+}
+header a{
+    text-decoration: none;
+    color: white;   
+}
+
+header a:hover{
+    color: red;
+    font-weight: bold;   
+}
+
+.imagem{ /* acesso da classe */
+    display: block; /* comportamento da div para bloco */
+    border: 5px dotted greenyellow; 
+    text-align: center; /* alinhamento do texto/div centralizado */
+    margin: 30px; /*espaçamento externo da div */
+}
+
+
+
+.imagem h1{ /* acesso de tag dentro da classe */
+    margin: 10px; /*espaçamento do bloco da imagem */
+    padding: 0px;
+    font-size: 30px;
+    color: greenyellow;
+    /*border: 2px solid white ; --> mostrar que é bloco */
+}
+img{
+    
+    margin: 0px 0px 20px 0px; /* espaçamento externo da imagem */ 
+    padding: 10px; /* espaçamento interno da imagem */
+    border: 5px groove greenyellow; /* borda com 5px, verde */
+    width: 300px; /*largura*/
+    height: auto ; /*altura*/
+  
+}
+
+img:hover{
+    
+   
+    border: 5px groove rgb(255, 0, 0); /* borda com 5px, vermelho */
+   
+  
+}
+

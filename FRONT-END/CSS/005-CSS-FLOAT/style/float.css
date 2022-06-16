@@ -1,0 +1,49 @@
+ul {
+    background-color: black;
+    height: 22px;
+}
+
+li {
+    float: left;
+    list-style-type: none;
+}
+
+li a {
+    text-decoration: none;
+    color: wheat;
+    padding: 5px;
+    padding-inline: 20px;
+    line-height: 20px;
+    border-radius: 10px;
+}
+
+li a:hover {
+    background-color: grey;
+}
+
+.login {
+    float: right;
+}
+
+.login:hover {
+    background-color: orange;
+    color: greenyellow;
+}
+
+.conteudoFlutuante {
+    overflow: auto;
+    border: 1px dashed black;
+}
+
+.conteudoFlutuante img {
+    float: left;
+    margin: 20px;
+}
+
+img {
+    margin: 5px;
+}
+
+img:hover {
+    opacity: 0.5;
+}

@@ -1,0 +1,5 @@
+.container{
+    display: flex;
+    border: 1px solid black;
+  
+} /* não confundir o alinhamento do container com os alinhamentos dos itens que estão dentro do container */

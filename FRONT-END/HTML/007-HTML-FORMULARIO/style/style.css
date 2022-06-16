@@ -1,0 +1,8 @@
+*{
+    font-weight: bolder;
+    text-transform: capitalize;
+    text-indent: 2%;
+}
+button{
+   background-color: yellow;
+}

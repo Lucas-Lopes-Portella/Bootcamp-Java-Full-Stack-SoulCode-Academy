@@ -1,0 +1,21 @@
+*{
+    background-color: rgb(10, 0, 0);
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    letter-spacing: 1px;
+    
+}
+
+
+input, textarea, select{
+    background-color: white;
+    color: black;
+    font-weight: bolder;
+    font-size: 16px;
+    
+}
+button{
+    background-color: green;
+    border: 2px solid white;
+    text-align: center;   
+}

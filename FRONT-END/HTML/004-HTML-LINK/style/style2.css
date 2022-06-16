@@ -1,0 +1,60 @@
+*{
+    background-color: rgb(23, 21, 29);
+    color: white;
+}
+
+a{
+    
+    color: yellow;
+    font-size: 16px;
+    text-decoration: none;
+    
+}
+
+figure{
+    margin: 50px;
+    text-align: center;
+}
+img{
+    height: 200px;
+    width: 200px;
+    margin: 5px; 
+    padding: 0px; 
+    border: 3px dotted rgb(255, 251, 0);
+}
+
+img:hover{
+    border: 3px dotted rgb(54, 216, 203);
+}
+
+
+
+.navegacao a:hover{
+    color: red;
+    font-weight: bold;
+}
+
+.navegacao li{
+    color: red;
+}
+
+.links{
+    text-align: center;
+    margin: 20px;
+    padding: 20px;
+
+}
+
+.links a:hover{
+    color: rgb(255, 255, 255);
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+.texto p{
+    color: rgb(54, 216, 203);
+}
+
+footer a:hover{
+    color: red;
+    font-weight: bold;
+}

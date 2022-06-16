@@ -1,0 +1,43 @@
+<h2>Ng Style</h2>
+<p [ngStyle]="{border: '4px groove MediumBlue', color:corDoParagrafo, fontWeight:'bolder', fontSize:'30px', fontFamily:'sans-serif' ,margin: 'auto', padding: '5px', backgroundColor:'DarkTurquoise', width:'400px', height:'100px', display:'flex',alignItems:'center', justifyContent:'center'}">
+  Mudar de cor
+</p>
+
+<div [ngStyle]="{display:'flex', alignItems:'center',margin:'10px 10px', padding:'10px', justifyContent:'center'}">
+<button [ngStyle]="{backgroundColor:'black', color:'white', border: '2px outset grey'}" 
+(click)="mudarCorDoParagrafo('Indigo')" >Mudar para roxo</button>
+<button [ngStyle]="{backgroundColor:'black', color:'white', border: '2px outset grey', margin:'0px 20px'}" 
+(click)="mudarCorDoParagrafo('Gold')">Mudar para Amarelo</button>
+<button [ngStyle]="{backgroundColor:'black', color:'white', border: '2px outset grey'}" 
+(click)="mudarCorDoParagrafo('Chartreuse')">Voltar ao original</button>
+</div>
+<hr>
+<app-diretiva-ngclass></app-diretiva-ngclass>
+<hr>
+<app-diretiva-ngif></app-diretiva-ngif>
+<hr>
+<app-diretiva-ngfor></app-diretiva-ngfor>
+<hr>
+<app-diretiva-ngswitch></app-diretiva-ngswitch>
+<hr>
+
+<app-componente-cartao meuTitulo="Oferta" >
+  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto quos atque voluptas in quaerat ducimus, eaque deserunt laudantium veritatis illo veniam, iste itaque tenetur? Iusto provident deserunt modi aliquid doloremque.</p>
+
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum sapiente officiis sunt non quod beatae dolorum nam eum. Blanditiis nostrum dolore ipsam repellendus quas voluptates possimus architecto quo natus quaerat?
+  Aperiam voluptate veniam, quaerat adipisci impedit corrupti soluta reprehenderit nisi voluptates voluptas accusamus harum quos quam officiis enim mollitia. Rem eius iusto fugiat quasi asperiores ducimus possimus. Et, neque sunt.
+  Nobis, explicabo id voluptatum itaque maxime dolor atque magnam. Tempora hic culpa animi corporis sequi corrupti. Id voluptate ex facilis sapiente nemo animi eaque neque libero dolor. Nobis, voluptatem libero?
+  Quae esse dolores corporis veritatis in repellat quia itaque eligendi ipsum, quisquam fugiat accusamus placeat asperiores optio perferendis a. Cumque minus quae reiciendis fugiat dolorum quas aliquam repudiandae expedita distinctio?
+  Officiis, quidem doloribus molestiae quisquam aspernatur numquam explicabo dicta minus iste aliquid nostrum molestias voluptas beatae tempore animi illo sint quae saepe sed! Facere quos nostrum quod non neque laudantium.
+  Cumque modi fugit accusantium provident dolores! Delectus vitae facilis culpa dolores est eum ad eos deserunt facere praesentium dolorum ipsam inventore repellat necessitatibus fuga, distinctio ducimus placeat voluptate ea? Saepe!</p>
+  <ul>
+    <li>Txt</li>
+    <li>Txt</li>
+    <li>Txt</li>
+  </ul>
+</app-componente-cartao>
+
+<hr>
+
+<button appBtn background="green">Clique aqui</button>
+<button appBtn>X</button>

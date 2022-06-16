@@ -1,0 +1,59 @@
+/*
+- O grid é o recurso mais morderno do CSS3 para estilização de elementos dentro de uma página. Considerado uma evolução do Flexbox, porém pode ser utilizado de forma complementar
+- Característica: bidimensional 
+
+*/
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.container{
+    display: grid;
+    grid-template-columns: 3fr 1fr; 
+    /* 
+   - Primeira coluna: 75%  - Segunda coluna: 25% 
+   */
+    grid-template-rows: 20vh 70vh 10vh; 
+    /*
+    -vh representa a altura visivel na tela
+    Primeira linha: 20%
+    Segunda linha: 70%
+    Terceira linha: 10%
+    */
+    grid-template-areas: "h h"
+    "m a"
+    "f f" ;
+}
+
+header{
+    background-color: yellow;
+    text-align: center;
+    line-height: 20vh;
+    grid-area: h;  
+}
+
+main{
+    background-color: blue;
+    text-align: center;
+    line-height: 70vh;
+    color: white;
+    grid-area: m;
+}
+
+aside{
+    background-color: green;
+    text-align: center;
+    line-height: 70vh;
+    color: white;
+    grid-area: a;
+}
+
+footer{
+    background-color: red;
+    text-align: center;
+    color: white;
+    line-height: 10vh;
+    grid-area: f;
+}
+
