@@ -1,0 +1,1843 @@
+
+API (Application Programming Interface)
+Conjunto de instruções e padrões de programação que servem para fornecer dados e informações relevantes de uma determinada aplicação
+
+
+CRUD
+Create
+Read
+Update
+Delete
+
+
+
+
+HTTP --> Protocólo de comunicação
+Navegador -- (Requisição | Resposta ) -- Servidor
+
+
+URI = URL + URN 
+
+URL = localiza // traz o caminho
+URN = identifica // traz o caminho + o nome da pagina|arquivo
+
+
+JSON
+
+Sintaxe:
+{
+Keys:values
+}
+Ex: 
+{
+	"firstName": "Lucas",
+	"lastName": "Lopes",
+	"pets": [
+			{
+				"name": "Café",
+				"type": "Lobinho"
+			}
+		]
+}
+
+
+
+
+
+
+
+________________SPRING FRAMEWORK________________ 
+
+
+
+JAVA PERSISTENCE API (JPA)
+Fornece um mecanismo para gerenciar a persistencia e mapeamento relacional de objeto
+
+SPRING DATA JPA
+13 métodos prontos para facilitar o armazenamento de dados relacionais ou nao relacionais
+
+SPRING BOOT
+Gerenciador do projeto. Configura os subprojetos como SPRING DATA, SPRING SECURITY
+
+
+IoC e INJEÇÃO DE DEPENDÊNCIA
+IoC - o objeto não cria as Dependências, mas as obtém de alguma forma
+Injeção de dependências - Permite inserir classes dentro de classes
+
+
+Spring realiza a instanciação de objetos (spring beans) e a injeção de dependências
+@Component 	--> bean generico
+@Service 	--> bean da camada de serviço
+@Repository 	--> bean da camada de persistência
+@Controller	--> bean que atua como controlador web
+@Autowired	--> realia a injeção de dependência
+
+
+SPRING MVC
+MODEL, VIEW, CONTROLLER
+navegador --> Front Controller Framework (Angular) --> Controller --> Model (camada DB) --> Controller --> Front Controller Framework --> View --> navegador
+
+
+PROJETO MAVEN 
+Gerencia as dependências de um projeto Java.
+Arquivo pom.xml (pom = project object model)
+
+
+
+
+
+
+
+
+
+________________ CRIAR PROJETO SPRING________________ 
+
+
+**SPRING INITIALIZR 
+
+- Project: Maven Project
+- Language: Java
+- Spring Boot: 2.7
+- Project Metadata: ... , Packaging: Jar
+
+DEPENDENCIES:
+- Spring Boot DevTools
+- Spring Web
+- Spring Data JPA
+- MS SQL SERVER DRIVE
+
+
+
+
+PROJETO EX: Services
+
+** CONFIGURAÇÃO INICIAL **
+
+//ARQUIVO PRINCIPAL
+package com.SoulCode.Services;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class ServicesApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(ServicesApplication.class, args);
+	}
+
+}
+
+
+// pom.xml --> Possui todas as configurações e dependências do projeto
+// alterar
+<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${project.parent.version}</version>
+			</plugin>
+		</plugins>
+	</build>
+
+
+
+
+**SINCRONIZAR O PROJETO SPRING COM BANCO DE DADOS
+
+// resources --> application.properties
+
+server.port=8080
+spring.datasource.url=jdbc:mysql://localhost:3306/BANCODEDADOS?useTimezone=true&serverTimezone=UTC
+spring.datasource.username=root
+spring.datasource.password= // DIGITAR SENHA
+spring.jpa.hibernate.ddl-auto=update
+
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
+
+
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+
+
+
+
+
+
+
+PASSO A PASSO
+
+I) criar projeto initalizr
+
+II) colocar plugin no pom.xml
+
+III) linkar banco de dados com spring
+
+IV) Criar pacote Models 
+Local onde serão inseridas as tabelas 
+Principais comandos:
+@Entity 	--> Informa que a classe é uma entidade
+@Id 		--> Informa que o atributo é a chave primária da tabela 
+@GeneratedValue(strategy = GenerationType.IDENTITY)  --> atribui a responsabilidade de criar os campos de id ao spring
+@Column(nullable = false, length=100) --> informa que o atributo é uma coluna
+Getters e Setters  --> criado getters e setters para todos os atributos/colunas
+
+V) Criar pacote Repositories
+Local para criação das interfaces que implementam o JpaRepository com os 13 métodos para facilitar o armazenamento de dados relacionais ou nao relacionais
+Principais comandos: 
+package com.SoulCode.Services.Repositories;
+
+import com.SoulCode.Services.Models.Employee;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
+}
+// A interface recebe os comandos do JpaRepository, que tem como parâmetros a classe que será utilizada, e o tipo do id
+
+
+VI) Criar pacote Services
+Local onde serão realizados os serviços da aplicação
+Principais comandos: 
+
+package com.SoulCode.Services.Services;
+
+import com.SoulCode.Services.Models.Employee;
+import com.SoulCode.Services.Repositories.EmployeeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.List;
+
+// Serviços correspondem aos métodos CRUD dentro da tabela
+@Service
+public class EmployeeService {
+
+    // Injeção de dependência --> criar um objeto de outra interface
+    @Autowired
+    EmployeeRepository employeeRepository;
+
+
+    //Serviço 01: Leitura de dados na tabela funcionários
+    // findAll --> método do spring JPA que busca todos os registros de uma tabela
+    public List<Employee> showAllEmployees  (){
+        return employeeRepository.findAll();
+    }
+
+}
+
+
+VII) Criar pacote Controllers
+Local onde os dados e métodos serão expostos para que o front-end possa consumir.
+Serve para mapear o serviço do employee CRUD
+PRINCIPAIS COMANDOS: 
+
+package com.SoulCode.Services.Controllers;
+
+import com.SoulCode.Services.Models.Employee;
+import com.SoulCode.Services.Services.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+// CrossOrigin --> aplicações de portas diferentes podem acessar os end points sem dar problemas de CORS
+// RequestMapping --> Mapa de requisição
+@CrossOrigin
+@RestController
+@RequestMapping("services")
+public class EmployeeController {
+    @Autowired
+    EmployeeService employeeService;
+
+    @GetMapping("/employees")
+    public List<Employee> showAllEmployees(){
+        List<Employee> employees = employeeService.showAllEmployees();
+        return employees;
+    }
+
+}
+
+
+
+VII) Em services criar um novo método
+Importante:
+ 
+//Optional<> Caso dê erro de not found mas não para a aplicação, permite deixar a aplicação rodando.
+
+Optional<Employee> // Employee é uma entidade
+EX:
+// Serviço 02: Buscar apenas um funcionário pelo seu ID (Primary Key)
+    public Employee showAnEmployeeById(Integer idEmployee) {
+        // Caso dê erro de not found o optional permite deixar a aplicação rodando.
+        Optional<Employee> employee = employeeRepository.findById(idEmployee);
+        return employee.orElseThrow();
+    }
+
+
+VIII) Incluir o método de buscar por ID no controller
+Importante: 
+  @GetMapping("/employees/{idEmployee}")
+    // ResponseEntity retorna todos os dados da da entidade
+    // @PathVariable --> informa que o ID será enviado pela URL da requisição
+    public ResponseEntity<Employee> showAnEmployeeById(@PathVariable Integer idEmployee){
+        Employee employee = employeeService.showAnEmployeeById(idEmployee);
+        return ResponseEntity.ok().body(employee);
+    }
+}
+
+
+
+IX) Passo VIII, porém para o email.
+
+
+X) Cadastrar um novo funcionário em service
+
+    public Employee registerNewEmployee(Employee employee){
+        employee.setIdEmployee(null);
+        return employeeRepository.save(employee);
+    }
+
+XI) Mapear o cadastro no controller
+
+ // Método para cadastrar
+    @PostMapping("/registerEmployee")
+    // RequestBody --> Os dados são passados para a tabela através do corpo da requisição.
+    public ResponseEntity<Employee> registerNewEmployee(@RequestBody Employee employee){
+        employee = employeeService.registerNewEmployee(employee);
+        // linha 52: criar-se uma URI para registro do funcionário na tabela
+        URI newUri = ServletUriComponentsBuilder.fromCurrentRequest().path("id").buildAndExpand(employee.getIdEmployee()).toUri();
+        return ResponseEntity.created(newUri).body(employee);
+    }
+
+
+XII) Criar método de deleção no Service
+ public void deleteEmployee(Integer idEmployee){
+        employeeRepository.deleteById(idEmployee);
+    }
+
+
+XIII) Mapear deleção em controller
+@DeleteMapping("/deleteEmployee/{idEmployee}")
+    public ResponseEntity<Void> deleteEmployee(@PathVariable Integer idEmplyee){
+        employeeService.deleteEmployee(idEmplyee);
+                return ResponseEntity.noContent().build();
+    }
+
+
+XIV) Criar metodo de atualização em service
+ public Employee putEmployee(Employee employee){
+        return employeeRepository.save(employee);
+    }
+
+XV) Mapear atualização em controller
+  @PutMapping("/putEmployee/{idEmployee}")
+    public ResponseEntity<Employee> putEmployee(@PathVariable Integer idEmployee, @RequestBody Employee employee){
+        employee.setIdEmployee(idEmployee);
+        employeeService.putEmployee(employee);
+        return ResponseEntity.ok().body(idEmployee);
+	// opção 2: return ResponseEntity.noContent().build(); 
+    }
+}
+
+
+
+XVI) Criar pacote Util e uma classe para fazer upload de arquivos
+
+package com.SoulCode.Services.Util;
+
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+
+public class UploadFile {
+
+
+    public static void saveFile(String uploadDir, String fileName, MultipartFile file) throws IOException {
+        //MultipartFile --> É o arquivo completo
+        //Path atribui ao objeto uploadPath o caminho (uploadDir) do arquivo
+        Path uploadPath = Paths.get(uploadDir);
+
+        // se o caminho (uploadDir) não existir, ele será criado dentro do if
+        if(!Files.notExists(uploadPath)){
+            Files.createDirectories(uploadPath);
+        }
+
+        // Tentar fazer o upload do arquivo
+        // InputStream tenta fazer a leitura do arquivo que queremos subir e faz a leitura byte por byte do arquivo
+
+        // Nesse momento o arquivo é salvo no diretório
+        try (InputStream inputStream = file.getInputStream()) {
+
+            // Classe Path --> permite fazer o upload do path e resolve a execução do upload
+            Path filePath = uploadPath.resolve(fileName);
+
+            //Momento da cópia do arquivo que está no HD para o local que será realizado o upload
+            // REPLACE_EXISTING --> Se o arquivo já existe, ele vai substituir
+            Files.copy(inputStream,filePath, StandardCopyOption.REPLACE_EXISTING);
+        }
+        catch (IOException e){
+            throw new IOException("Não foi possível enviar o seu arquivo");
+        }
+    }
+}
+
+
+XVI) CONTROLLER PARA O UPLOAD DE ARQUIVO
+
+package com.SoulCode.Services.Controllers;
+
+import com.SoulCode.Services.Services.EmployeeService;
+import com.SoulCode.Services.Util.UploadFile;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.imageio.IIOException;
+import java.io.IOException;
+
+// CrossOrigin serve para evitar erros de CORS ()
+@CrossOrigin
+@RestController
+@RequestMapping("services")
+public class UploadFileController {
+
+    @Autowired
+    EmployeeService employeeService;
+
+    @PostMapping("/employee/uploadPhoto/{idEmployee}")
+    //RequestParam significa que o nome do arquivo será passado pelo parâmetro da requisição
+    public ResponseEntity<Void> uploadPhoto(@PathVariable Integer idEmployee,
+                                            MultipartFile multipartFile,
+                                            @RequestParam("name") String name){
+        String fileName = name;
+        String uploadDir = "D:/LUCAS LOPES/TEMPORARIOS/fotosExApiJava";
+        String namePlusPath = "D:/LUCAS LOPES/TEMPORARIOS/fotosExApiJava/" + name;
+
+
+
+        try{
+            UploadFile.saveFile(uploadDir, fileName ,multipartFile);
+            employeeService.savePhoto(idEmployee,namePlusPath);
+        } catch (IOException e){
+            System.out.println("O aquivo não foi enviado"+ e.getMessage());
+        }
+        return ResponseEntity.ok().build();
+    }
+
+
+}
+
+
+
+
+
+
+
+XVII) UPLOAD DE ARQUIVO NO SERVICE
+// UPDATE. SALVAR FOTO NO BANCO DE DADOS
+    public Employee savePhoto(Integer IdEmployee, String pathPhoto){
+        Employee employee = showAnEmployeeById(IdEmployee);
+        employee.setPhoto(pathPhoto);
+        return employeeRepository.save(employee);
+    }
+
+
+
+
+
+SOLID
+GRUPO 4: Princípio da segregação da interface
+
+Lucas Lopes
+Lucas Pereira
+Manuela
+Marcelo
+Marcos Antonio
+Marlon
+Matheus
+Natalia
+
+Segunda 14h -- 12 minutos para falar
+
+
+TEXTOS:
+
+Como surgiu o Princípio da Segregação de Interfaces?
+Durante uma consultoria realizada para a Xerox, para a melhoria de um sistema para impressoras que executava uma variedade de tarefas. O software para esse sistema tinha um problema grave de design, onde quase todas as tarefas usavam uma única classe abstrata chamada Worker que continha todos os recursos necessários para a execução de inúmeras operações. 
+Assim, uma tarefa de grampear teria conhecimento de todos os métodos da impressora, embora não houvesse necessidade deles. Na medida que o software crescia, ficava cada vez mais difícil evoluí-lo, tornando inviável o processo de desenvolvimento.
+Como solucionou o problema?
+Martin solucionou o problema criando uma estrutura parecida com o padrão Template Method (GAMMA et all 1995). O princípio usado (que futuramente se tornou conhecido como Princípio da Segregação de Interfaces), consistiu na criação de uma camada de interface entre a classe Worker e suas classes clientes. Em vez de ter uma grande classe Worker contendo a implementação de todas as operações, foram criadas interfaces específicas para cada tarefa. Isso separou o software em contextos menores, facilitando a manutenção e diminuindo o custo de seu desenvolvimento.
+
+
+
+
+
+
+XVIII) Instruções para CHAMADO
+A) MODELS
+CLASSE CALLED
+package com.SoulCode.Services.Models;
+
+import javax.persistence.*;
+import java.util.Date;
+
+@Entity
+public class Called {
+    @Id
+    private Integer idCalled;
+
+    @Column(nullable = false)
+    private String tittle;
+
+    @Column(nullable = true)
+    private String description;
+
+    @Column(columnDefinition = "date", nullable = false)
+    private Date dateRegister;
+
+    @Enumerated(EnumType.STRING)
+    private  StatusCalled status;
+
+    //Significa que o relacionamento é muitos para um (linkado com Employee)
+    @ManyToOne
+    @JoinColumn(name = "idEmployee")
+    private Employee employee;
+
+    //Significa que o relacionamento é muitos para um (linkado com Client)
+    @ManyToOne
+    @JoinColumn(name = "idClient")
+    private Client client;
+}
+
+
+ENUM STATUSCALLED
+package com.SoulCode.Services.Models;
+
+public enum StatusCalled {
+    RECEBIDO( "Recebido"),
+    ATRIBUIDO("Atribuido"),
+    CONCLUIDO("Concluido"),
+    ARQUIVADO("Arquivado");
+
+    private String conteudo;
+
+    StatusCalled(String conteudo) {
+        this.conteudo=conteudo;
+    }
+
+    public String getConteudo() {
+        return conteudo;
+    }
+
+}
+
+B) Services
+
+Serviços do called
+package com.SoulCode.Services.Services;
+
+import com.SoulCode.Services.Models.Called;
+import com.SoulCode.Services.Repositories.CalledRepository;
+import org.aspectj.weaver.ast.Call;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class CalledService {
+
+    @Autowired
+    CalledRepository calledRepository;
+
+    //READ. Serviço 01: Leitura de dados na tabela chamados
+    public List<Called> showAllCalleds (){
+        return calledRepository.findAll();
+    }
+
+    //READ. Serviço 02: Buscar apenas um funcionário pelo seu ID (Primary Key)
+    public Called showAnCalledById(Integer idCalled){
+        Optional<Called> called = calledRepository.findById(idCalled);
+        return called.orElseThrow();
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+C) Controllers 
+Controller Called
+
+package com.SoulCode.Services.Controllers;
+
+import com.SoulCode.Services.Models.Called;
+import com.SoulCode.Services.Services.CalledService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@CrossOrigin
+@RestController
+@RequestMapping("/services")
+public class CalledController {
+
+    @Autowired
+    CalledService calledService;
+
+    // Controle do SERVIÇO 01. (READ)
+    // Método Get permite fazer a busca de chamados
+    @GetMapping("/called")
+    public List<Called> showAllClients(){
+        List<Called> calleds = calledService.showAllCalleds();
+        return calleds;
+    }
+
+    // Controle do SERVIÇO 02. (READ)
+    // ResponseEntity retorna todos os dados da entidade
+    // @PathVariable --> informa que o ID será enviado pela URL da requisição
+    @GetMapping("/idCalled/{idCalled}")
+    public ResponseEntity<Called> showAnCalledById(@PathVariable Integer idCalled){
+        Called called = calledService.showAnCalledById(idCalled);
+        return ResponseEntity.ok().body(called);
+    }
+}
+
+
+
+
+xix) 
+a)chamado repository
+//forma de fazer consultas do SQL quando não existe método no JPA
+    @Query(value = "SELECT * FROM called WHERE status =:status", nativeQuery = true)
+    List<Called> findByStatus(String status);
+
+b)chamado service
+ // READ. Serviço 05: Buscar chamados pelo status
+    public List<Called> fetchCalledFromTheStatus(String status){
+        return calledRepository.findByStatus(status);
+    }
+
+c) chamado controller
+// Controle do SERVIÇO 05. (READ)
+        @GetMapping("/calledStatus")
+        public List<Called> fetchCalledFromTheStatus(@RequestParam("status") String status) {
+            List<Called> called = calledService.fetchCalledFromTheStatus(status);
+            return called;
+        }
+
+
+
+xx) Procedimento para datas
+a) chamado repository
+@Query (value = "SELECT * FROM called WHERE date_register BETWEEN :dataI AND :dataII", nativeQuery = true )
+    List<Called> findByDateRange(Date dateI, Date dateII);
+
+b) chamado service
+// READ. Serviço 06: Buscar chamados por intervalo de data
+    public List<Called> findByDateRange(Date dateI, Date dateII){
+        return calledRepository.findByDateRange(dateI, dateII);
+    }
+
+c) chamado controller
+   @Query (value = "SELECT * FROM called WHERE date_register BETWEEN :dateI AND :dateII", nativeQuery = true )
+    List<Called> findByDateRange(Date dateI, Date dateII);
+
+
+
+
+
+ 
+
+
+RESOLVER LÓGICA DO SERVIÇO 11:
+nesse caso a gente vai poder mudar o status pra atribuido mesmo quando não tiver um funcionario atribuido?
+
+
+
+ //Controle do SERVIÇO 06. (READ)
+        @GetMapping("/calledByDateRange")
+        public List<Called> findByDateRange(@RequestParam("dateI") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date dateI, @RequestParam("dateII") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)  Date dateII){
+            List<Called> called = calledService.findByDateRange(dateI,dateII);
+            return called;
+        }
+
+
+
+CONTROLLER
+http://localhost:8080/services/calledModifyStatus/123?status=CONCLUIDO
+
+// Controle do SERVIÇO 11. (UPDATE)
+        @PutMapping("/calledModifyStatus/{idCalled}")
+        public ResponseEntity<Called> modifyStatus(@PathVariable Integer idCalled, @RequestParam("status") String status ){
+            calledService.modifyStatus(idCalled, status);
+        return ResponseEntity.ok().build();
+        }
+
+
+
+
+
+
+
+pagamento terá o mesmo id do serviço  --- similar endereço clien
+relacionamento onetoone feito no chamado(serviços)
+Criar a tabela de Pagamento:
+-idPagamento int
+-valor double
+-formaPagamento string
+-StatusPagamento (Enum -LANCADO E QUITADO)
+Regras: 1- essa tabela tem um relacionamento OneToOne com Chamado.
+               2 - o id do pagamento deve ser o mesmo id do chamado correspondente
+               3 - o relacionamento deve ser colocado na tabela de Chamado, com o cascade para exclusão do pagamento.]
+
+
+QUERY PARA IMPLEMENTAR EM PAGAMENTOS
+
+
+SELECT payment.*, called.id_called, called.tittle, client.id_client, client.name
+FROM called RIGHT JOIN payment ON called.id_called = payment.id_payment
+LEFT JOIN client ON client.id_client = called.id_called;
+
+
+
+TRATAMENTO DE EXCEÇÕES COM SPRING
+
+I) CRIAR PACOTE EXCEPTION EM SERVICES E DENTRO CRIAR A(S) CLASSE(S) DE EXCEÇÃO
+package com.SoulCode.Services.Services.Exceptions;
+
+public class EntityNotFoundException extends RuntimeException{
+    public EntityNotFoundException(String msg){
+        super(msg);
+    }
+}
+
+II) IMPLEMENTAR EM SERVICES
+EX:
+public Employee showAnEmployeeById(Integer idEmployee) throws EntityNotFoundException {
+        // Caso dê erro de not found o optional permite deixar a aplicação rodando.
+        Optional<Employee> employee = employeeRepository.findById(idEmployee);
+        return employee.orElseThrow(
+                () -> new EntityNotFoundException("Funcionário não encontrado: " + idEmployee)
+        );
+    }
+
+
+III) CRIAR PACOTE EXCEPTION EM CONTROLLER E DENTRO CRIAR AS CLASSES DE CONTROLE DE EXCEÇÃO
+
+CLASSE PADRÃO
+III.I) CLASSE StandardErro (possui o padrão dos erros mostrados sem os tratamentos)
+package com.SoulCode.Services.Controllers.Exception;
+import java.time.Instant;
+public class StandardErro {
+    private Instant timestamp;
+    private Integer status;
+    private String error;
+    private String trace;
+    private String message;
+    private String path;
+
+    public StandardErro(){}
+
+    public Instant getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Instant timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+
+    public String getTrace() {
+        return trace;
+    }
+
+    public void setTrace(String trace) {
+        this.trace = trace;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+}
+
+
+CLASSE EXEMPLO
+III.II) CLASSE ResourceExceptionHandler (momento de instanciar o objeto criado dentro da classe StandardErro)
+
+package com.SoulCode.Services.Controllers.Exception;
+
+import com.SoulCode.Services.Services.Exceptions.EntityNotFoundException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import javax.servlet.http.HttpServletRequest;
+import java.time.Instant;
+
+//ControllerAdvice é uma bean que identifica uma classe que faz tratamento de exceções
+@ControllerAdvice
+public class ResourceExceptionHandler {
+
+    // EntityNotFoundException classe de exceção criada em service
+    // HttpServletRequest mostra o caminho da requição
+    // Bean obrigatória para informar a classe do erro
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<StandardError> entityNotFound(EntityNotFoundException e, HttpServletRequest request){
+        StandardError error = new StandardError();
+       //setTimestamp verifica o momento que aconteceu o erro
+        // Instant.now() o exato momento que o erro ocorreu
+        error.setTimestamp(Instant.now());
+
+        //HttpStatus mostra o status do erro
+        error.setStatus(HttpStatus.NOT_FOUND.value());
+
+        error.setError("Registro não encontrado");
+
+        // vai usar a mensagem de erro da classe criada no service ( EntityNotFoundException )
+        error.setMessage(e.getMessage());
+
+        // colocar o caminho da requisição através do request. (uri que foi buscada)
+        error.setPath(request.getRequestURI());
+
+        // mostra de onde vem o erro (classe)
+         error.setTrace("EntityNotFoundException");
+
+         // vai retornar o status que tem como parâmetro o tipo do erro, e inserir no corpo o objeto criado
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+** SPRING SECURITY ( SEGURANÇA EM REST API ) **
+
+
+PRINCIPAIS REST API
+- Cliente servidor
+- Stateless
+(...)
+
+MATURIDADE DE UMA REST API
+-Nível 0: POX (Plain Old Xml)		--> Single URI and single verb					| POX SWAMP
+-Nível 1: Recursos 			 --> Multiple URI based 	| Resources and single verbs	| URI
+-Nível 2: Padrão de mercado (atualmente) --> Multiple URI-based 	| Resourses and verbs		| HTTP
+-Nível 3: HATEOAS 				HYPERTEXT AS THE ENGINE OF APPLICATION STATE		| HYPERMEDIA
+
+
+
+NÍVEL 0: POX
+EX: AÇÃO DESCRITA NO CORPO
+/SERVICES/[ GET||POST||PUT ]
+
+GET/FoodService HTTP	1.1
+{
+	"action":"GetFoodServed"
+}
+
+HTTP	1.1 200 OK
+
+{
+
+"Italian": ["pizza","calzone"],
+"Chinese": ["fried rice", "prawn crackers"],
+"Indian": ["curry","poppadoms"]
+
+}
+
+
+NÍVEL 1: Recursos
+EX: VÁRIOS ENDPOINTS E UM ÚNICO MÉTODO
+POST/restaurants/italian/orders		HTTP 1.1	
+{
+
+"order":[{
+		"item":"pizza",
+		"quantity":1
+	}]
+
+}
+
+HTTP 1.1 200 OK
+{
+
+	"order": [{
+		"orderNo: "123456",
+		"item": "pizza",
+		"toppings": ["pepperoni","extra cheese"],
+		"quantity": 1
+		}],
+		"total": "$15.00"
+}
+
+
+
+NÍVEL 2: Verbos
+EX: Vários endpoints e vários métodos		| GET || POST || PUT || PATCH || DELETE
+DELETE /restaurants/indian/orders/89GY70W8		HTTP 1.1
+	
+{
+
+	"order": [{
+		"items":[{
+				"item":"curry",
+				"quantity":1
+			},{
+				"item": "poppadoms",
+				"quantity":2
+			}]
+		}],
+	"orderNo: "89GY7QW8",
+	"total": "$5.60"
+}
+
+
+NÍVEL 3: HATEOAS 
+(slide)
+
+
+
+
+
+JWT (JSON WEB TOKEN)
+É um padrão de indústria aberto para facilitar a comunicação entre duas partes de forma segura
+
+
+
+I) HEADER
+{
+
+	"typ":"JWT",
+	"alg":"HS256
+
+}
+
+
+II) PAYLOAD
+{
+	"sub":"user10001",
+	"iat": 1569302116,
+	"role":"admin",
+	"user_id":"user10001"
+}
+
+III) SIGNATURE
+HMAC-SHA256(
+	base64urlEnconding(header) + '.' + base64urlEnconding(payload),secret_salt
+	)
+
+
+
+DINÂMICA CLIENTE-SERVIDOR COM JWT
+
+
+BROWSER						SERVER
+---------------------------------------------------->
+	POST/login with username + password
+
+
+<---------------------------------------------------- 	CREATE JWT with secret
+	Return JWT to the browser
+
+
+---------------------------------------------------->	Check JWT signature with secret. Get user info from JWT
+	Send JWT in Authorization header
+
+
+<---------------------------------------------------- 
+	Send response to client
+
+	
+
+
+HTTP Request			x		HTTP Response
+VERB | URI | VERSION				RESPONSE CODE | HTTP VERSION
+REQUEST HEADER					RESPONSE HEADER
+REQUEST MESSAGE					RESPONSE MESSAGE
+
+
+
+
+
+PASSO A PASSO
+I) criar o model
+II) INSERIR NO pom.xml
+<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.auth0</groupId>
+			<artifactId>java-jwt</artifactId>
+			<version>3.19.2</version>
+		</dependency>
+
+III) Criar model 
+
+package com.SoulCode.Services.Models;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.persistence.*;
+
+@Entity
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(unique = true, nullable = false)
+    private String login;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String password;
+
+  ++++++++++
+GETTERS E SETTERS
+}
+
+
+
+iv) criar repository 
+...
+@Repository
+public interface UserRepository extends JpaRepository<User, Integer> {
+    public Optional<User> findByLogin(String login); // busca pelo email do user
+}
+
+v) criar service 
+package com.SoulCode.Services.Services;
+
+import com.SoulCode.Services.Models.User;
+import com.SoulCode.Services.Repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class UserService {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    // READ. SERVIÇO 01: Mostrar todos os usuários
+    public List<User> showAllUsers(){
+        return userRepository.findAll();
+    }
+
+    // CREATE. SERVIÇO 02: Cadastrar usuário
+    public User registerUser(User user){
+        return userRepository.save(user);
+    }
+}
+
+
+vi) criar controller 
+package com.SoulCode.Services.Controllers;
+
+
+import com.SoulCode.Services.Models.User;
+import com.SoulCode.Services.Services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@CrossOrigin
+@RequestMapping("services")
+public class UserController {
+
+    @Autowired
+    private UserService userService;
+
+    // classe criada para codificar senhas
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    //CONTROLE DO SERVIÇO 01. READ
+    @GetMapping("/user")
+    public List<User> showAllUsers(){
+        return userService.showAllUsers();
+    }
+
+    //CONTROLE DO SERVIÇO 01. CREATE
+    @PostMapping("/user")
+    public ResponseEntity<User> registerUser(@RequestBody User user){
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+
+        user.setPassword(encodedPassword);
+
+        user = userService.registerUser(user);
+
+        return ResponseEntity.status(HttpStatus.OK).body(user);
+    }
+
+}
+
+
+VII) Alterar a configuração padrão do security (o mesmo que protege as outras classes)
+Criar pacote Security para controle de segurança
+
+VIII) Criar classe para se comunicar com o security
+
+package com.SoulCode.Services.Security;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+public class AuthUserDetail implements UserDetails {
+
+    private String login;
+    private String password;
+
+    public AuthUserDetail(String login, String password){
+        this.login = login;
+        this.password = password;
+    }
+
+    // coleção de papeis do usuário,
+    // como não implementamos, retornar algo vazio
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return new ArrayList<>();
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return login;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        // true permite o usuario logar
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        //true informa que todos os usuários estão habilitados
+        return true;
+    }
+}
+// O Spring Security não se comunica diretamente o o nosso model User. 
+// Nesse caso é necessário criar uma classe que ele conheça para fazer essa comunicação,
+// UserDetails = Guarda informações do contexto de autenticação do usuário (autorização, habilitado, etc...)
+
+
+
+IX) Criar classe de serviços que o spring security irá conversar 
+package com.SoulCode.Services.Services;
+
+import com.SoulCode.Services.Models.User;
+import com.SoulCode.Services.Repositories.UserRepository;
+import com.SoulCode.Services.Security.AuthUserDetail;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+
+@Service
+public class AuthUserDetailService implements UserDetailsService {
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+        Optional<User> user = userRepository.findByLogin(username);
+
+        if(user.isEmpty()){
+            throw new UsernameNotFoundException("Usuário não encontrado");
+        }
+        return new AuthUserDetail(user.get().getLogin(), user.get().getPassword());
+    }
+}
+
+
+// O propósito do UserDetailService é carregar o usuário de alguma fonte de dados e criar uma instância de AuthUserDetail, conhecida pelo Spring
+
+
+
+
+
+
+X) Criar classe para JWT (Criação de token para codificação de senha e email)
+Construir em application.properties (resources)
+
+
+// secret deve ser mantido e guardado no back-end, pois é ele que permite a aceitação dos tokens
+//expiration é o periodo de expiração do token, em milisegundos
+
+jwt.secret=meu-secret-bcw20
+jwt.expiration=86400000
+
+
+XI) Criar classe JWT em Util
+package com.SoulCode.Services.Util;
+
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+import java.util.Date;
+
+@Component
+public class JWTUtils {
+    @Value("${jwt.secret}")
+    private String secret;
+
+    @Value("${jwt.expiration}")
+    private Long expiration;
+
+    public String generateToken(String email){
+        return JWT.create().withSubject(email).withExpiresAt(
+                new Date(System.currentTimeMillis() + expiration)).sign(Algorithm.HMAC512(secret)
+                // função que cria o jwt, pega a data atual mais a data de expiração e no final assina o algoritmo
+        );
+    }
+    public String getLogin(String token){
+        return JWT.require(Algorithm.HMAC512(secret)).build().verify(token).getSubject();
+        // retorno do JWT decodificado
+    }
+}
+
+
+XII) Autenticações finais  (filtros)
+Criar classe em Security
+
+package com.SoulCode.Services.Security;
+
+import com.SoulCode.Services.Models.User;
+import com.SoulCode.Services.Util.JWTUtils;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.ArrayList;
+
+// possui métodos próprios para autenticação.
+public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+   private AuthenticationManager authenticationManager;
+    private JWTUtils jwtUtils;
+
+    public JWTAuthenticationFilter(AuthenticationManager manager, JWTUtils jwtUtils){
+        this.authenticationManager = manager;
+        this.jwtUtils = jwtUtils;
+    }
+
+    @Override
+    // HttpServletRequest é a requisição que vem do front
+    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
+        try {
+            //ex: {"login":"l@gmail.com", "password":"batata"}
+            User user = new ObjectMapper().readValue(request.getInputStream(), User.class);
+
+            return authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(user.getLogin(),user.getPassword(),new ArrayList<>()
+                    )
+            );
+
+        } catch (IOException io){
+            throw new  RuntimeException(io.getMessage());
+        }
+    }
+
+    @Override
+    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
+        AuthUserDetail user = (AuthUserDetail) authResult.getPrincipal();
+        String token = jwtUtils.generateToken(user.getUsername());
+
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE");
+        response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+        response.getWriter().write("{\"Authorization\":\""+token+"\"}");
+        response.getWriter().flush();
+    }
+
+
+
+
+
+}
+
+/**
+ * FRONT MANDA {"login": "jr@gmail.com", "password": "12345"}
+ * A partir do JSON -> User
+ * Tenta realizar autenticação
+ *      Caso dê certo:
+ *          - Gera o token JWT
+ *          - Retorna o token para o FRONT
+ */
+
+
+
+XII) Criar autorização
+Criar classe em Security
+
+package com.SoulCode.Services.Security;
+
+import com.SoulCode.Services.Util.JWTUtils;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.ArrayList;
+
+// verificar se há token
+public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
+    private JWTUtils jwtUtils;
+    public JWTAuthorizationFilter(AuthenticationManager manager, JWTUtils jwtUtils){
+        super(manager);
+        this.jwtUtils = jwtUtils;
+    }
+
+    @Override
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
+        String token = request.getHeader("Authorization"); // Bearer --> padrão de comunicação web que vai concatenado com o token
+        if(token!=null && token.startsWith("Bearer")) { //token válido
+            // concluir autorização
+            UsernamePasswordAuthenticationToken authToken = getAuthentication(token.substring(7));
+            if(authToken != null) {
+
+                //detentor de contexto de segurança
+                // pega a autenticação.
+                SecurityContextHolder.getContext().setAuthentication(authToken);
+                // Guarda informações do usuário autenticado no contexto do Spring
+                // Essa informação pode ser utilizada dentro dos controllers da aplicação
+            }
+        }
+	chain.doFilter(request, response);
+    }
+
+    public UsernamePasswordAuthenticationToken getAuthentication(String token){
+        String login = jwtUtils.getLogin(token);
+        if(login == null) {
+            return null;
+        }
+        return  new UsernamePasswordAuthenticationToken(login, null, new ArrayList<>());
+    }
+}
+
+
+XIII) CRIAR PACOTE DE CONFIGURAÇÃO 
+
+XIV ) CRIAR CLASSE PARA CONFIGURAR O SECURITY
+
+
+package com.SoulCode.Services.Config;
+
+import com.SoulCode.Services.Security.JWTAuthenticationFilter;
+import com.SoulCode.Services.Security.JWTAuthorizationFilter;
+import com.SoulCode.Services.Services.AuthUserDetailService;
+import com.SoulCode.Services.Util.JWTUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.List;
+
+//bean para configurar o security
+@EnableWebSecurity
+public class JWTConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private JWTUtils jwtUtils;
+
+    @Autowired
+    private AuthUserDetailService userDetailService;
+
+    @Override
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailService).passwordEncoder(passwordEncoder());
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        // cors -- cross origin é habilitado e o csrf é desabilitado
+        // csrf é uma configuração que pode ser desabilidade
+        http.cors().and().csrf().disable();
+        http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtils));
+        http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtils));
+
+
+
+        http.authorizeRequests()
+                // autorizar a requisição a partir do end point /login
+                .antMatchers(HttpMethod.POST,"/login").permitAll()
+                //.antMatchers(HttpMethod.GET,"/services/**").permitAll()
+         .anyRequest().authenticated();
+
+        // criação de politica de autenticação. STATELESS informa que não iremos criar
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+    }
+
+    // bean necessária para comunicação com o front-end, permite não dar erro de cors
+    // CROSS ORIGIN RESOURCE SHARING.
+    @Bean
+    CorsConfigurationSource corsConfigurationSource(){
+        CorsConfiguration configuration = new CorsConfiguration(); // configurações de cors padrão
+        configuration.setAllowedMethods(List.of(
+                HttpMethod.GET.name(),
+                HttpMethod.PUT.name(),
+                HttpMethod.POST.name(),
+                HttpMethod.GET.name()
+
+        )); // metodos permitidos para o front acessar
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource(); // objeto que irá permitir quais portas poderão ser aceitas
+        source.registerCorsConfiguration("/**", configuration.applyPermitDefaultValues());
+         // ** informa que vale qualquer endpoint.
+        // no caso da função, informa os endpoints permitidos para o front acessar
+        return source;
+    }
+
+    // Injeção a nível de método (os outros, geralmente, são injetados como classe)
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+
+        return new BCryptPasswordEncoder();
+    }
+
+
+}
+
+
+
+
+
+
+CONFIGURAR O REDIS  (RODAR O REDIS: redis)
+(estudar o material do prof.
+ex: 'cargo'.concat(#idCargo)
+)
+
+
+NO UBUNTU UTILIZAR:
+CONFIGURAÇÕES INICIAIS	
+i- sudo apt-get update
+ii - sudo apt-get install redis
+
+COMANDOS DE MANIPULAÇÃO 
+redis-server // iniciar o redis
+redis-cli		// executar 
+KEYS *    // buscar
+
+O spring se comunica com o redis para fazer as requisições de busca (baseado no ttl, tempo de vida), caso tenha o user, por exemplo no cache do redis, ele retornará para o spring o dado e não será necessário acessar o banco de dados mySql. ("memória dinâmica")
+
+REDIS
+É um armazenamento de estruturas de dados na memória, pode ser usado como banco de dados NoSQL, cache e outros
+cache evita sobrecarga no banco de dados
+
+
+
+
+
+
+I) INSTALAR O WSL (Ubuntu)
+Em powershell (administrador) utilizar:  wsl --install
+
+
+
+
+
+II) INSTALAR DEPENDÊNCIAS NO pom.xml e carregar o maven
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-cache</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+
+
+III) Criar classe de configuração do cache dentro do pacote Config
+
+package com.SoulCode.Services.Config;
+
+import org.springframework.boot.autoconfigure.cache.RedisCacheManagerBuilderCustomizer;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.cache.RedisCacheConfiguration;
+import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.RedisSerializationContext;
+
+import java.time.Duration;
+
+//bean que informa que a classe é utilizada para configuração
+@Configuration
+public class CacheConfig {
+
+   // serve para converter json para redis e vice-versa
+   // serializationpair serve para transformar json para redis e vice versa
+   private final RedisSerializationContext.SerializationPair<Object> serializationPair = RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer());
+
+
+   // transformar par a o formato que o redis suporta
+   // Método para informar o per
+      @Bean
+   public RedisCacheConfiguration cacheConfiguration(){
+         return RedisCacheConfiguration // customizar
+                 .defaultCacheConfig()
+                 .entryTtl(Duration.ofMinutes(5)) // informa que todos os caches terão 5 minutos por padrão (tempo de vida)
+                 .disableCachingNullValues() // // não salva valores nulos
+                 .serializeValuesWith(serializationPair); // converte do redis p/ json e vice-versa
+
+
+      }
+
+      // Método para criar caches personalizados
+      @Bean
+      public RedisCacheManagerBuilderCustomizer redisCacheManagerBuilderCustomizer(){
+         return (builder) -> builder
+                 .withCacheConfiguration("clientCache",
+                     RedisCacheConfiguration
+                         .defaultCacheConfig().entryTtl(Duration.ofSeconds(30))
+                         .serializeValuesWith(serializationPair)
+
+                 ).withCacheConfiguration(
+                         "calledCache",
+                         RedisCacheConfiguration
+                                 .defaultCacheConfig().entryTtl(Duration.ofSeconds(5))
+                                 .serializeValuesWith(serializationPair)
+                 );
+      }
+}
+
+
+iv) implementar nos services (fazer atualização de cache para o método READ)
+ex dentro do serviço 01 de clientes:
+
+//READ. SERVIÇO 01: Leitura de dados na tabela client
+
+    @Cacheable("clientCache") // só irar chamar o return caso o cache expirar
+    public List<Client> showAllClients() {
+        return clientRepository.findAll();
+    }
+
+
+Ex2: // READ. SERVIÇO 02: Buscar apenas um cliente pelo seu ID (Primary Key)
+ @Cacheable(value = "clientCache", key = "#idClient") // ex: clientCache::1
+    public Client showAnClientById(Integer idClient) throws EntityNotFoundException{
+        Optional<Client> client = clientRepository.findById(idClient);
+        return client.orElseThrow(
+                () -> new EntityNotFoundException("Cliente não encontrado: " + idClient)
+        );
+    }
+
+OBSERVAÇÃO: 
+- Só pode haver um key dentro do @Cacheable.
+- Caso o método tenha mais deu m parametro, manipular de forma que não haja repetição
+
+
+v) Informar o spring que queremos o cache em ServicesApplication
+
+
+@EnableCaching
+@SpringBootApplication
+public class ServicesApplication { 
+...
+}
+
+
+vi) fazer atualização de cache para o método PUT
+IMPORTANTE: @Cache
+ex: client service
+
+// UPDATE. SERVIÇO 06: Atualizar um cliente
+    @CachePut(value = "clientCache", key = "#client.idClient")
+    public Client putClient(Client cliente){
+        return clientRepository.save(cliente);
+    }
+
+vii) fazer atualização de cache para o método DELETE
+IMPORTANTE: @CacheEvict
+ex: client service
+
+// DELETE. SERVIÇO 05: Deletar um cliente
+    // allEntreies true informa que irá apagar todos os valores associados ao valor (value) e a chave (key) dentro do redis
+    @CacheEvict(value = "clientCache", key="idClient", allEntries = true)
+    public void deleteClient(Integer idClient){
+        clientRepository.deleteById(idClient);
+    }
+
+
+// metodos com parametros precisam de chaves?
+
+// reportar ao prof sobre fazer sentido ter cache para apresentação da lista. E ao atualizar em outro local e tiver cache para apresentar essa lista, os dados não apareceriam atrasado
+
+// pode haver chaves com mesmos nomes/parametros em Cacheput?
+
+
+
+PERSONALIZADOS
+Client		OK
+called		OK
+user  	       	OK
+
+PADRÃO
+address		OK
+authuserdetail	OK
+cargo		OK
+employee	
+payment		OK
+
+
+
+
+
+
+TESTES 
+
+Teste unitário é testar a menor unidade do projeto (classes e métodos)
+TDD - test driven development (desenvolvimento orientado a testes)
+
+
+
+EXEMPLO OBSOLETO
+
+public class CalculadoraPorcentagemTest {
+
+    public static void main(String[] args) {
+        testeCalculadoraPorcentagemValida();
+        testeCalculadoraPorcentagemInvalida();
+    }
+
+    public static void testeCalculadoraPorcentagemValida(){
+        CalculadoraPorcentagem calc = new CalculadoraPorcentagem();
+        String resultado = calc.calcular(50, 1000.0); // parâmetro ditos logo abaixo nos comentários
+        String resultadoEsperado = "50% de 1000,0 = 500,0";
+        if (resultado.equals(resultadoEsperado)) {
+            System.out.println("Teste fumego");
+        }
+        else{
+            System.out.println("Teste não fumego");
+            System.out.println(resultado);
+        }
+    }
+
+    public static void testeCalculadoraPorcentagemInvalida() {
+        CalculadoraPorcentagem calc = new CalculadoraPorcentagem();
+        String resultado = calc.calcular(-40, 1000.0);
+
+        if(resultado == null) {
+            System.out.println("Teste fumego 2");
+        }
+        else{
+            System.out.println("Teste não fumego, comportamento indesejado");
+            System.out.println(resultado);
+        }
+    }
+
+}
+
+
+
+
+// CalculadoraPorcentagem
+// Serão passados dois parâmetros
+// 1º Percentual -> 0 a 100
+// 2º Total -> tipo double
+// Resultado esperado -> 50% de 1000 = 500
+
+
+
+
+
+----------------
+public class CalculadoraPorcentagem {
+
+
+    public String calcular(double percentual, double valor) {
+        if(percentual >= 0 && percentual <= 100) {
+            double resultado = (percentual / 100) * valor;
+            return String.format("%.0f", percentual) + "% de " + String.format("%.1f", valor) + " = " + String.format("%.1f", resultado);
+        }
+        return null;
+    }
+}
+
+
+
+
+
+
+***CONFIGURAÇÃO DO JUnity para realizar testes***
+
+I) DENTRO DO pom.xml
+	<dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.8.1</version>
+            <scope>test</scope>
+        </dependency>
+
+
+II) as classes de teste vão dentro da pasta test
+
+III) EXEMPLO
+public class ConversorTemperatura {
+    public double celsiusToFahrenheit(double tempC){
+        return(tempC * (9.0/5.0) + 32);
+    }
+    public double fahrenheitToCelcius(double tempF){
+        return( (tempF - 32) * (5.0 / 9.0) );
+    }
+}
+
+-----------------------------
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+public class ConversorTemperaturaTest {
+
+    ConversorTemperatura conversor = new ConversorTemperatura();
+
+    @Test
+    public void testConverterCParaF(){
+        double resultado = conversor.celsiusToFahrenheit(80.0);
+         assertTrue(resultado==176.0); // se o resultado da condição for true o teste deu certo
+    }
+
+
+    @Test
+    public void testConverterFparaC(){
+        double resultado = conversor.fahrenheitToCelcius(176.0);
+        assertTrue(resultado==80.0); // se o resultado da condição for true o teste deu certo
+    }
+}
+
+
+
+
+EXEMPLO 02: VEÍCULO
+
+
+
+
+
+
+.............
+database-1.ct3bhjbxpq78.us-east-1.rds.amazonaws.com
+
+username
+
+root
+
+senha
+
+80538053

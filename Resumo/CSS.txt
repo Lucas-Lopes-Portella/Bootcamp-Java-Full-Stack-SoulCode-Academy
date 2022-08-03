@@ -1,0 +1,355 @@
+
+
+
+
+Linguagem de estilização
+
+
+
+3 formas de apresentar o CSS
+
+
+css inline - estilo para funcionalidade especifica em determinado elemento
+
+<h1 style="color:red ; text-align: center; font-size: 30px;">Começando com CSS</h1>
+
+
+
+css interno - estilo para funcionalidade especifica em determinada página
+
+<HEAD>
+<style>
+        p{
+            text-align: center;
+            font-weight: bolder;
+        }
+    </style> <!-- CSS INTERNO -->
+</HEAD>
+
+
+
+css externo - estilo para funcionalidade generalista, sendo aplicado o mesmo estilo para diversas páginas
+				link
+<link rel="stylesheet" type="text/css" href="css/style.css">
+
+
+ESTILOS:
+
+- color: -- define a cor do texto
+- background-color -- define a cor do plano de fundo
+- font-size -- define o tamanho da fonte
+- text-align -- permite definir em qual posição da tela irá ficar o elemento. EX: text-align:center
+
+PRIORIDADE
+INLINE > INTERNO > EXTERNO
+
+
+Seletores
+ 
+I) HTML
+
+a) class = "nomeDaClasse" 
+// é possivel colocar mais de uma classe para uma taG
+// uma classe pode estar em várias tags
+
+
+
+b) id = "NomeDoId"
+// apenas um id por tag
+
+
+
+c) <tag> </tag>
+
+
+
+II) CSS 
+a) .nomeDaClasse{
+
+text-align:center;
+
+}
+b) #nomeDoId{
+
+text-align:center;
+
+}
+
+c) tag {
+
+}
+
+
+
+
+PRIORIDADE
+ID > CLASS > TAG
+
+
+FONTES
+
+font-family: arial
+
+fontes baixadas
+@font-face{
+font-family:"minhafonte";
+src:url(diretoriodoarquivo.formato)
+}
+links para baixar fontes: https://www.dafont.com/pt/
+
+
+fontes externas
+FONTE DO GOOGLE: https://fonts.google.com/
+-Escolher fonte, copiar link do css externo e usar o nome do font-family:;
+
+
+
+
+
+
+CSS
+
+
+Continuação Aula 1
+CRIAÇÃO DE ID
+Importância de criar sites responsivos e com acessibilidade
+
+#paragrafo1{
+    color: blue;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: underline;
+    font-style: oblique;
+    text-transform: capitalize;
+    text-indent: 20px; /* paragrafo */
+    letter-spacing: 2px;
+    word-spacing: 10px;
+    line-height: 20px;
+
+}
+
+
+.minhaDiv{ 
+// imagens 
+    width: 80%;  /*   recomendado colocar a largura em porcentagem */
+    height: 200px;
+    background-color: aquamarine;
+    background-image: url(../img/soulcode.png);
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: cover;
+
+// bordas 
+    border: 1px solid blue;
+    border-style: solid dashed; /* top right bottom left */
+    border-width: 10px 2px 5px 15px; /* separa a borda individualmente */
+    border-radius: 10px;
+
+// margin e padding
+
+    padding: 20px 15px 10px 5px; /* espaçamento interno */
+    margin: 10px; /* espaçamento externo */
+    border: 2px dashed black;
+
+
+
+}
+
+.botao1:hover{
+    background-color: black;
+    border: 2px dashed grey;
+    color: white;
+    padding: 18px;
+    cursor:ne-resize
+}
+
+
+
+
+
+
+
+
+CSS 
+
+
+
+
+
+
+/* 
+
+as folhas de estilo são lidas de cima para baixo. 
+
+
+display --> serve para organizar os componentes dentro da página. Ex: um ao lado do outro.
+VALOR: 
+- block: especifica que o elemento vai ocupar a linha inteira.
+Elementos que se comportam, por padrão, como bloco. Quebra linha no final do elemento. div; titulos; paragrafos; form; header; section; article; aside; nav; footer.
+
+- inline: especifica que o elemento não ocupa a linha inteira. Ocupa apenas o espaço do proprio elemento. Não há quebra de linha ao final do elemento. a; img; span
+
+- inline-block:  permite alterar a altura, largura e margem de um elemento, diferente do display: inline
+
+- flex: possibulita flexibilidade para posicionar os elementos */
+
+.emBloco{
+
+    /* display: block --> padrão */
+    background-color: blue;
+    color: antiquewhite;
+}
+
+.emLinha{
+    background-color: violet;
+    color: darkblue;
+}
+
+.blocoEmLinha{
+    display: inline;
+}
+
+li{
+    display: inline-block;
+    background-color: black;
+    color: goldenrod;
+    font-weight: bolder;
+    text-align: center;
+    /* 
+    as propriedades de altura, largura e margem não funcionam quando o elemento tem a propriedade display como inline. Precisa ser inline-block*/
+   
+    width: 100px;
+    height: 50px;  
+    
+}
+
+.botao{
+    /* display: inline-block; */
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    background-color: rgb(0, 89, 255);
+    color: white;
+    border-radius: 10px;
+    padding: 5px;
+    text-decoration: none;
+    font-weight: 800;
+    height: 50px;
+    width: 50%;
+    line-height: 50px;
+
+
+    
+}
+
+.vermelho{
+    
+    background-color: red;
+    color: white;
+}
+.verde{
+   
+    background-color: green;
+    color: white;
+}
+.verde:hover{
+/* display: none; */
+visibility: hidden;
+}
+.azul{
+    
+    background-color: blue;
+    color: white;
+}
+
+.todasDivs{
+    display: inline-block;
+    width: 200px;
+    height: 50%;
+}
+
+
+
+
+
+CSS 
+
+
+
+I) propriedade position -- static / relative / absolute / fixed / sticky
+ 
+position: relative; // relativo ao elemento pai 
+    top: 50px;
+    left: 10%;
+
+position: absolute; /* relativo ao primeiro elemento pai que tem um posicionamento relative */
+   top: 20px;
+   right: 20px;
+
+ position:sticky; /* fica grudado na tela enquanto o elemento está dentro do elemento pai */
+    top: 0px;
+
+ position: fixed; /* fica grudado na página inteira*/
+    bottom: 5px;
+    right: 5px;
+
+
+
+II) Float - propriedade que permite ao componente "flutuar" dentro do componente pai
+
+
+  ITENS
+ overflow: auto;	
+ opacity: 0,7;
+
+
+
+FLEXBOX 
+
+
+FlexBox é uma evolução do float, mas não o elimina. Os dois podem ser utilizados de forma complementar
+
+-> Sempre utilizaremos um container e os itens (elementos) que vão ficar dentro dele
+
+-> a propriedade display:flex SEMPRE fica no container
+
+-> Por padrão o flexBox não respeita a largura dos itens e coloca todos na mesma linha - para modificarmos isso precisamos utilizar a propriedade flex-wrap
+
+-> Alinhamento das divs filhas
+justify-content ; align-items
+
+
+CLASSE MAE
+display: flex;
+flex-direction: column;
+
+
+
+FLOAT
+
+-> O elemento flutua dentro da classe pai
+
+
+
+ POSITION 
+
+-> Static
+-> Relative - em relação ao elemento pai
+-> Fixed - Fixado na página
+-> Absolute - relativo ao primeiro elemento pai que tem um posicionamento relative
+-> sticky (pegajoso) - fica grudado na tela enquanto o elemento está dentro do elemento pai 
+
+
+
+
+
+
+CSS
+
+CSS GRID
+display:grid
+
+
+
+

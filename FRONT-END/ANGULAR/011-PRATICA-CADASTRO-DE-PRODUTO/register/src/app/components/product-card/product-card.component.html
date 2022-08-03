@@ -1,0 +1,12 @@
+<mat-card>
+  <img mat-card-image [src]="productPhoto" />
+  <mat-card-content>{{ productName | uppercase }}</mat-card-content>
+  <mat-card-content> {{ productPrice | currency: "BRL" }}</mat-card-content>
+  <mat-divider></mat-divider>
+  <mat-card-footer>
+    <button mat-stroked-button (click)="openSnackBar()">
+      Comprar
+    </button>
+  </mat-card-footer>
+</mat-card>
+
