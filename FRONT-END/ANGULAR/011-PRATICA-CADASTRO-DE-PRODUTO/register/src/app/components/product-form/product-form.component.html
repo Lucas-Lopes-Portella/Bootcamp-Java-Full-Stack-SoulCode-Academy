@@ -1,0 +1,51 @@
+<h1>Novo Produto</h1>
+
+<section class="Register" mat-dialog-content>
+  <form action="" [formGroup]="productForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Nome</mat-label>
+      <input
+        type="text"
+        name="fieldName"
+        formControlName="name"
+        matInput
+        placeholder="Nome do produto"
+      />
+      <mat-error></mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Preço</mat-label>
+      <input
+        type="number"
+        name="fieldName"
+        formControlName="price"
+        matInput
+        placeholder="Ex: 1000 "
+      />
+      <mat-error></mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Foto</mat-label>
+      <input
+        type="text"
+        name="fieldName"
+        formControlName="photo"
+        matInput
+        placeholder="Ex: https://url"
+      />
+      <mat-error></mat-error>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      [mat-dialog-close]="productForm.value"
+      [disabled]="productForm.invalid"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+   
+  </form>
+</section>

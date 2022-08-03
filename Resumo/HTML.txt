@@ -1,0 +1,61 @@
+## 22/05/10
+#### TAGS
+
+- H1-H6   -- Hierarquia de títulos
+- p	      -- parágrafo
+- br	    -- quebra de linha
+- em      -- dar ênfase ao texto selecionado
+- strong  -- negrito semântico
+- header  -- divisão inicial do html
+- ol	    -- lista ordenada
+- ul	    -- lista não ordenada
+- dl 	    -- lista de definição
+- img     -- inserção de imagem interna e externa e a importância do texto alternativo para a acessibilidade 
+- div	    -- container genérico para conteúdo de fluxo
+- Classes no HTML 
+
+
+
+## 22/05/11
+### HTML
+  
+  
+- continuação da aula de listas
+- criação de tabelas
+- criação de formulários
+- exemplo de âncoras
+- utilização de CSS para estilização da página {}; background-color; color; text-align;
+- conceitos de classe e id
+
+
+  
+## 22/05/12
+### HTML
+
+  
+#### Formulários II
+  
+- action
+- method POST e GET
+- label
+- input
+- type ID e NAME
+- select (option)
+- textarea
+- button
+
+
+
+## 22/05/13
+### HTML
+
+#### TAGS SEMÂNTICAS DO HTML5
+
+- main
+- section
+- header
+- nav
+- article
+- aside
+- footer
+

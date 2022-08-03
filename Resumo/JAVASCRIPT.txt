@@ -1,0 +1,766 @@
+
+## 22/05/10
+
+
+
+  
+  
+### JAVASCRIPT
+
+  
+#### COMANDOS  
+
+- alert();    -- Mostra uma mensagem na tela
+- prompt();   -- insere mensagem na tela e há um campo para resposta
+- confirm();  -- mensagem com botão de confirmar e cancelar
+
+  
+#### VARIÁVEIS
+  
+- var nomeVar = valor;
+      O var permite criar outra variavel com o mesmo nome. 
+      
+      É possivel alterar seu valor. 
+      
+      EX var nome = Lucas; 
+      
+      var nome = Lopes; 
+
+- let nomeLet = valor; 
+       O let não permite criar outra variavel com o mesmo nome. 
+       
+       É possivel alterar seu valor. 
+       
+       EX let nome = Lucas; 
+       
+       nome = Lopes;
+- const nomeConst = valor; 
+       O const não permite criar outra variavel com o mesmo nome. 
+       
+       Não é possível alterar seu valor. 
+       
+       EX const pi=3.1415; 
+
+  
+#### OPERADORES
+  
+i)
+- ( + )   -- Sinal de mais
+- ( - )   -- Sinal de menos
+- (  )   --	Sinal de divisão
+- (  )   -- Sinal de multiplicação
+- (  )  -- Sinal de exponenciação
+- ( % )   -- Sinal de resto da divisão
+
+ii)
+- ( == )  -- Sinal de valor igual
+- ( === ) -- Sinal de valor e tipo igual
+- ( != )  -- Sinal de valor diferente
+- ( !== ) -- Sinal de valor e tipo diferente
+- (  )   -- Sinal de maior que
+- ( = )  -- Sinal de maior ou igual
+- (  )   -- Sinal de menor que
+- ( = )  -- Sinal de menor ou igual
+
+iii)
+- ( && )  -- Sinal lógico E
+- (  )  -- Sinal lógico OU
+
+  
+#### ESTRUTURAS CONDICIONAIS 
+
+- IF    	 -- Se
+- IF ELSE  -- Se Senão 
+  
+  
+---------------------------------------------------
+ 
+  
+
+
+  
+### JAVASCRIPT
+
+  
+#### CONTINUACAO OPERADORES 
+
+- ( && ) e (  ) e ( ! )
+- ( += )
+- ( -= )
+- ( = )
+- ( = )
+
+  
+#### ESTRUTURA CONDICIONAL TERNÁRIA
+
+- (expressão booleana (executa caso verdadeiro)  (executa caso falso) ) 
+
+  
+#### SWITCHh3
+
+ pre     
+  switch (expressão) {
+      case valor 1
+      comandos;
+      break;
+      case valor 2
+      comandos;
+      break;
+      default
+      comando padrão;
+  }
+pre
+  
+#### ESTRUTURAS DE REPETIÇÃO
+  
+- while
+- do while
+- for 
+- foreach
+
+  
+#### EXTRA
+  
+- debugger
+- concatenação
+- Exercício criação de tabuada para reforço do conteúdo aprendido
+
+
+---------------------------------------------------
+  
+
+
+### JAVASCRIPT
+
+#### Arrays unidimensionais e multidimensionaish3
+
+##### Array unidimensional
+
+- const array = new Array();
+- const array2 = [1,2];
+- const array3 = [1,2,3,4,5,6,7,8];
+
+
+##### Array unidimensional
+
+- EX array multidimensional	
+
+pre
+   const arrayTabela = [
+      [1,2,3,4,5,6],
+      [a,b,c,d,e],
+      [A,B,C,D]
+  ];
+  console.table(arrayTabela);
+  console.log(arrayTabela[1][3])
+  console.log(arrayTabela[2][5])
+pre
+
+  pre
+      ┌─────────┬─────┬─────┬─────┬─────┬─────┬───┐
+      │ (index) │  0  │  1  │  2  │  3  │  4  │ 5 │
+      ├─────────┼─────┼─────┼─────┼─────┼─────┼───┤
+      │    0    │  1  │  2  │  3  │  4  │  5  │ 6 │
+      │    1    │ 'a' │ 'b' │ 'c' │ 'd' │ 'e' │   │
+      │    2    │ 'A' │ 'B' │ 'C' │ 'D' │     │   │
+      └─────────┴─────┴─────┴─────┴─────┴─────┴───┘
+  pre
+  
+    d
+    
+    undefined
+
+
+- O primeiro [ ] é para buscar na linha do array, de cima pra baixo, igual na tabela  0 1 2 
+- O segundo [ ] é para buscar na coluna do array, da esquerda para direita, igual na tabela 0 1 2 3 4 5
+- Se o item que a gente quer estiver vazio, aparece undefined. E não é possível buscar valores fora do array, tipo arrayTabela[2][6], vai dar erro.
+
+  
+
+
+#### MAIS SOBRE ARRAYS
+
+- método .length para saber o tamanho do array
+- metodo variavel.toFixed(numero); 
+      limita a quantidade de casas decimais que irão aparecer na tela 
+      
+      quando utilizado torna o numero em uma string
+- metodo array.push 
+      adiciona valores a ultima posição do array
+
+
+
+#### FOR OF & FOR IN
+
+EX 
+pre
+  let array = [2,3,4,5]
+  for(let i of array){
+      console.log(i)   
+  }
+
+  console.log(----------------)
+
+  for(let j in array){
+      console.log(j)   
+  }
+pre
+
+- A posição de i no FOR OF é igual ao valor que tem dentro do array 
+- A posição de j no FOR IN é igual a posição do array
+
+
+#### EXERCÍCIO
+
+- exercicio para reforço do conteudo de arrays
+
+
+---------------------------------------------------
+   
+  
+## Conteúdo aprendido em 22/05/13
+
+
+
+### JAVASCRIPT 
+
+#### STRING 
+
+- let str = ''
+- let str2 = 
+- let str3 = ``
+
+
+- ( n )				                       -- entende que é quebra de linha
+- (  texto palavra texto  )      -- colocar aspas dentro de string 
+- (  texto 'palavra' texto  )        -- colocar aspas dentro de aspas
+
+
+
+#### MATH 
+
+- Math.random() -- A função Math.random() retorna um número pseudo-aleatório no intervalo [0, 1[, ou seja, de 0 (inclusivo) até, mas não incluindo, 1 (exclusivo)
+- Math.floor()  -- retorna o menor número inteiro dentre o número x
+- Math.ceil()   -- retorna o menor número inteiro maior ou igual a x
+- Math.round()  -- retorna o valor de um número arredondado para o inteiro mais proximo
+- Math.sqrt()   -- retorna a raiz quadrada de um número ( x )
+    
+
+
+
+
+
+
+
+String tem comportamento semelhante ao array
+propriedade .lenght para visualizar o tamanho de caracteres contidos na string.
+EX - 
+const str = 'Olá Mundo';
+console.log(str.length);
+
+É possível acessar a posição de um caractere específico.
+EX - console.log(str.[2]);
+
+Retornando o útimo elemento de uma string.
+console.log(str[str.length-1]); // quantidade -1
+
+
+MÉTODOS:
+indexOf() -- procura no texto o indice em que a palavra inicia. Se não encontrar o resultado esperado, retorna -1.
+EX: console.log(str.indexOf('homem'));
+
+charAt() -- Descobrir o CARACTERE que está em determinada posição.
+EX: console.log(str.charAt('10')); 
+
+charCodeAt() -- Descobrir o CODE que está em determinada posição.
+EX: console.log(str.charCodeAt('10')); 
+
+split() -- Recorta padrão contido nos parenteses () e remove da string, armazenando a nova string em um novo array. 
+EX: console.log(str.split(" "));
+
+concat() -- untar caracteres com os já existentes na string
+EX: console.log(str.concat('. ','Sim',',' , ' ', 'exatamente'));
+
+toUpperCase() -- transforma a cadeia de caracteres em letras MAIÚSCULAS
+EX: console.log(str.toUpperCase())
+
+toLowerCase() -- transforma a cadeia de caracteres em letras minúsculas
+EX: console.log(str.toLoweCase())
+
+replace() -- console.log(str.replace('palavra do texto','mnova palavra'))
+EX: altera parte da string na primeira aparição
+EX COM EXPRESSÃO REGULAR: console.log(str.replace(/homem/g,'pessoa'))
+
+replaceAll() -- console.log(str.replaceAll('palavra do texto','nova palavra'))
+EX: altera parte da string
+
+startsWith() -- valor booleano para verificar se a string começa com o caractere (ou cadeia de caracteres) específicado(s) -- true ou false
+EX: console.log(str.startsWith('O hom')); 
+
+endsWith() -- valor booleano para verificar se a string termina com o caractere (ou cadeia de caracteres) específicado(s) -- true ou false
+EX: console.log(str.endsWith('O hom')); 
+
+slice() -- método para recortar parte da string
+EX: console.log(str.slice(2,10)); 
+
+
+slice() II -- método para recortar parte da string com números negativos
+EX: console.log(str.slice(-3)); 
+
+
+
+
+
+
+
+JAVASCRIPT
+
+
+*OBJETOS
+REPRESETAÇÃO DE OBJETO REAL DENTRO DA LINGUAGEM DE PROGRAMAÇÃO
+
+
+/* 
+i) Propriedades/Atributos - caracteristicas dos elementos
+ii) Métodos/Funções - rotinas que um objeto pode realizar a partir de algoritmos 
+*/
+
+// forma de declarar objeto;
+//formato chave:valor
+// objeto != array
+let pessoa = {
+     nome:"Cremilda", // Propriedade
+     idade: 65
+}
+
+// é possível cirar e acessar objetos dentro de objetos
+let pessoa = {
+     nome:"Cremilda", // Propriedade
+     idade: 65,
+     endereco : {
+         cidade: 'Rio de Janeiro',
+         estado: 'Rio de Janeiro',
+         cep: '18151-505'
+     }
+
+}
+
+// Sintaxe para chamar objetos
+  
+i)  console.log(pessoa['idade']);
+ii) console.log(pessoa.endereco.estado);
+
+
+
+  
+
+
+
+CLASSES
+Estrutura básica de um objeto (molde)
+
+OBJETOS: parte concreta
+
+//primeira letra maiuscula 
+// dentro da classe tem um método construtor, utilizado para criar o objeto dentro da classe
+
+class NomeDaClasse {
+	constructor() { // construtor utilizado para criar elementos da classe NomeDaClasse
+		this.nome = 'Amanda' // faz referencia a propria classe
+		this.idade = 23
+		
+	}
+}
+
+
+let objetoDaClasse = new NomeDaClasse(); // criação do objeto
+
+console.log(`Olá, ${objetoDaClasse.nome}`)
+
+
+
+
+
+
+INSERINDO DADOS DENTRO DA CLASSE 
+
+class Pessoa{
+    constructor(nome) { 
+		this.nome = nome 
+		this.idade = 23
+	}
+}
+let objetoDaClasse = new Pessoa('Lucas');
+objetoDaClasse.nome = 'Amanda'
+console.log(objetoDaClasse.nome)
+
+
+//this faz referencia a propria classe
+
+
+
+
+*INTRODUCAO AOS MÉTODOS (funções) em POO, DENTRO DE OBJETOS
+
+     cumprimentar: function() {
+        console.log('Olá pessoa');
+     }
+
+	OU
+
+     cumprimentar() {
+        console.log('Olá pessoa');
+     }
+
+chamar método
+i) pessoa.cumprimentar();
+ii) pessoa['cumprimentar']();
+
+EXEMPLO DE COMPARACAO PARA ENTENDER METODO
+funcao afim: f(x) = ax + b // x é o parametro
+	    function nomear(nome){
+	     }
+
+
+CLASSE + MÉTODO 
+
+cumprimentar(){
+	console.log(`Olá, ${this.nome}` // isso dentro da classe
+}
+
+// chamando o metodo fora da classe
+let p = new nomeObjeto();
+p.cumprimentar();
+
+
+
+// métodos estáticos podem ser acessadas sem ter necessariamente uma instacia.
+
+ex: static cumprimentar2() // dentro da classe
+{
+	instruções	
+
+}
+
+NomeDaClasse.cumprimentar2()  // fora da classe
+
+é possivel acessar as classes em outros arquivos de duas formas, criando dois scripts dentro do index.html e abrindo no navegador ooooou se não for pelo navegador tem que fazer exportando a classe para outro arquivo.js
+
+
+
+
+
+
+JAVASCRIPT
+
+FUNÇÕES
+LINGUAGENS QUE TRABALHAM COM PROGRAMACAO FUNCIONAL:
+FUNCOES SAO TRATADAS COMO VALOR 
+
+function cumprimentar(){		// funcao sem parametro
+    confirm("Confirma ai padrin")
+}
+cumprimentar();
+
+
+function cumprimentar2(msg){ 		//funcao com parametro
+    alert(msg);	
+}
+cumprimentar2('Oi');
+
+
+
+Dentro do JAVASCRIPT não é obrigatório passar os parametros para a funcao para que o programa rode... porém o valor retornado é UNDEFINED.
+
+
+function cumprimentar2(msg = 'valor padrao'){	 //funcao com parametro padrao
+    alert(msg);
+}
+cumprimentar2(); // retornado >> valor padrao <<
+
+
+
+JUNCAO COM HTML
+
+function criarParagrafo(txt, elemento ='p') {
+    document.write(`<${elemento}><strong>${txt}</strong></${elemento}>`);
+}
+
+criarParagrafo('document.write converte a string em um elemento HTML', 'h1');
+criarParagrafo('document.write converte a string em um elemento HTML', 'h2');
+criarParagrafo('document.write converte a string em um elemento HTML', 'h3');
+
+
+
+FUNCAO COM RETORNO
+
+ function somar(a,b){
+    
+    a+b; 
+}
+let total = somar(5,6);
+console.log(total) // retorna undefined
+ 
+
+
+function somar(a,b){
+    
+    return a+b; // o return serve para retornar o valor e nao deixar os valores se perderem dentro da funcao
+}
+let total = somar(5,6);
+console.log(total)  // RETORNA 11
+
+
+
+function imc(peso, altura){
+    return parseFloat((peso/(Math.pow(altura,2))).toFixed(1))
+}
+console.log(imc(75,1.66));
+
+
+exercicio de criar uma funcao do 2 grau
+// FORMATO 	 f(x) = ax^2 + bx + c
+// DELTA 	 b^2 - 4*a*c
+// BHASKARA 	-b +- ((DELTA)**(1/2)) / (2*a)
+
+
+
+OBS: 
+é possivel retornar mais de um elemento em uma funcao 
+
+ARRAY:
+ex: return [x1, x2]
+
+OBJETO 
+return {
+ x1,
+ x2
+}
+
+
+
+
+FUNCOES ANONIMAS -- declaradas em variaveis
+
+let subtrair = function(a,b) {
+    if (b>a){
+        return b-a
+    } else {
+        return a-b
+    }
+}
+console.log(subtrair(5,2)) // 3
+
+
+
+
+
+
+
+
+
+ARROW FUNCTIONS --- (SÃO FUNCOES ANONIMAS)
+
+//declacacao para mais de um parametro
+let sub = (a,b) => {   
+    if (b>a){
+        return b-a
+    } else {
+        return a-b
+    }
+}
+console.log(sub(5,2)) //3
+
+
+//declacacao mais reduzida com mais de um parametro
+let sub2 = (a,b) => a+b
+console.log(sub2(3,2))
+
+
+//declacacao sem parametro
+let sub2 = (a,b) => a+b
+let sub3 = () => 5
+
+//declacacao um parametro
+let sub4 = umParametro => umParametro * 2
+
+
+
+
+
+
+JAVASCRIPT 
+
+Metodo eval
+0x numeros em hexadecimal para decimal
+0b numeros em binario para decimal
+
+let var = prompt("digite um numero binario");
+const decimal = eval(`0b${var}`);
+
+
+DOM
+manipular o html através do javascript
+-arvore DOM
+
+
+
+
+TRANSFORMAR STRING PARA ARRAY
+// Array.from(document.getElementsByTagName('tag'));
+
+
+
+ALTERAR TEXTO DO ELEMENTO
+	let btn = document.getElementsByTagName('button')[2]
+        btn.innerText = 'Alternativo';
+        console.log(btn)
+
+
+	btn.onclick = function () { 
+            alert('voce clicou em mim') 
+	}
+
+
+	 btn.addEventListener('click', () => { btn.innerText('Mudei') })  // recomendado no JAVASCRIPT -- Conceito de programação funcional
+
+
+
+HEAD
+ <script src="dom.js" defer></script>
+/HEAD
+- o defer permite que o navegador leia todo o html para só então rodar o arquivo.js
+
+
+
+RECUPERAÇÃO DE ELEMENTOS HTML DENTRO DO JAVASCRIPT
+
+
+--
+document.getElementsByTagName()[]	- variado
+document.getElementsByName()[]		- variado
+document.getElementsByClassName()[]	- variado
+document.getElementById() 		- unico	
+document.querySelector()  		- unico 
+//recomendável pois é mais flexível
+document.querySelectorAll()		- variado
+//recomendável pois é mais flexível
+
+
+SIMULAÇÃO REQUISIÇÃO API
+
+
+
+
+
+
+
+
+
+
+
+
+ITENS NOVOS:
+
+
+btnAddRemover.addEventListener('click', () => {
+divQuadrado.classList.toogle('vermelho')
+})
+
+
+
+ANIMAÇÃO EM JAVASCRIPT
+divQuadrado.addEventListener('mouseenter', () => {
+    divQuadrado.style.animationName = 'rotacionar';
+    divQuadrado.style.animationDuration = '3s';
+    divQuadrado.style.animationIterationCount = 'infinite';
+
+})
+divQuadrado.addEventListener('mouseout', () => {
+    divQuadrado.style.animationName = 'rotacionar';
+    divQuadrado.style.animationDuration = '';
+    divQuadrado.style.animationIterationCount = '';
+  
+}) 
+
+
+
+ANIMACAO EM CSS
+
+.quadrado {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: black;
+    /*  animation-name: rotacionar;
+    animation-duration: 3s;
+    animation-iteration-count: infinite; */
+    /* transition: background 1s; */
+}
+
+.vermelho{
+    background-color: rgb(228, 21, 21);
+}
+
+.quadrado:hover {
+    background-color: rgb(68, 1, 1);
+}
+
+@keyframes rotacionar {
+    from {
+        transform: rotate(0);
+        width: 100px;
+    }
+
+    to {
+        transform: rotate(180deg);
+        width: 200px;
+    }
+
+
+
+    /*  10% {
+
+    } 40% {
+        
+    } 70% {
+
+    } */
+}
+
+
+
+
+
+
+
+
+
+
+REQUISICOES HTTP
+
+hypertext transfer protocol
+
+{
+GET (pegar info do servidor) - pode ser acessado pela URL
+POST (enviar e salvar no servidor) - 
+PUT (atualizar o servidor)
+DELET (exlui algo do servidor)
+
+}
+
+API - Application Programming Interface
+
+PASSO A PASSO
+//promisse --> maneira de trabalhar com programação assincrona. 
+Javascript --> metodo fetch('link');
+
+EX: 
+
+       fetch('https://api.github.com/users/TatianaDChiaccio', {
+            method: 'GET'
+        }).then((resposta) => {
+            return resposta.json();
+        }).then((dados) => {
+            console.log(dados);
+        })

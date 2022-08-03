@@ -1,0 +1,10 @@
+{
+  "funcionarios": [
+    {
+      "nome": "a",
+      "email": "a@gmail.com",
+      "foto": "https://firebasestorage.googleapis.com/v0/b/soulcode-app-services.appspot.com/o/1657804490049?alt=media&token=ed9932ea-ff7f-499e-aadf-08d8603fc0ca",
+      "id": 3
+    }
+  ]
+}

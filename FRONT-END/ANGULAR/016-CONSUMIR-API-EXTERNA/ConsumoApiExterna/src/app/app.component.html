@@ -1,0 +1,26 @@
+
+<div class="container" *ngIf="moviesApiContent$ | async as moviesApiContent; else notMoviesApiContent">
+    <mat-card class="film" *ngFor="let filme of moviesApiContent.items">
+        <mat-card-header>
+            <mat-card-title>
+                {{filme.title}}
+            </mat-card-title>
+             <mat-card-subtitle>
+                {{filme.fullTitle}}
+            </mat-card-subtitle> 
+        </mat-card-header>
+         <mat-card-content>
+            <img src={{filme.image}} alt="image">
+        </mat-card-content>
+        <mat-card-footer>
+            <p>Rating</p>
+            {{filme.imDbRating}} 
+        </mat-card-footer> 
+    </mat-card>
+</div>
+
+<ng-template #notMoviesApiContent>
+    <p>Filme não encontrado</p>
+</ng-template>
+
+<router-outlet></router-outlet>

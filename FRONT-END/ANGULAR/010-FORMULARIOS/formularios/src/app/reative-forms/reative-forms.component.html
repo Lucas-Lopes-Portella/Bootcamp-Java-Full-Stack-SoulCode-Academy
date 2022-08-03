@@ -1,0 +1,79 @@
+<mat-toolbar color="warn">
+    <mat-toolbar-row>
+      <h1>FormsModule</h1>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <div class="container">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Your data</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form action="" [formGroup] = "formUser" (ngSubmit)="submit()">
+          <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input
+              type="text"
+              matInput
+              name="nameField"
+              formControlName="name" > 
+            <!-- [formControl] = "formName" vai dentro do input -->
+            <mat-error></mat-error>
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill">
+            <mat-label>Username</mat-label>
+            <input
+              type="text"
+              matInput
+              name="userNameField"
+              formControlName="username"
+            >
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input
+              type="email"
+              matInput
+              name="emailField"
+              formControlName="email"
+            >
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input
+              type="password"
+              matInput
+              name="passwordField"
+              formControlName="password"
+            >
+            <mat-error> 
+              <span *ngIf="formUser.get('password')?.getError('required')">  Required field
+            </span>
+            
+            <span *ngIf="formUser.get('password')?.getError('minlength')"> Password must be at least 6 characters long
+            </span>
+            
+
+            </mat-error>
+          </mat-form-field>
+  
+          <mat-radio-group name="genreField" formControlName="genre">
+            <mat-radio-button value="M">Male</mat-radio-button>
+            <mat-radio-button value="F">Female</mat-radio-button>
+            <mat-radio-button value="O">Other</mat-radio-button>
+          </mat-radio-group>
+  
+          <section>
+            <mat-checkbox name="acceptTermsAndConditionsField" formControlName="acceptTermsAndConditionsField">
+              Aceito os <a href="#">Terms and conditions</a>
+            </mat-checkbox>
+          </section>
+  
+          <button type="submit" mat-stroked-button color="link" [disabled]="formUser.invalid">Register</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>

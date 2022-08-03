@@ -1,0 +1,18 @@
+<mat-drawer-container class="sideNav">
+  <mat-drawer mode="side" opened class="sideNavBar"
+    ><h1>{{ Tittle }}</h1></mat-drawer
+  >
+
+  <mat-drawer-content class="sideNavContent">
+    <section ><p *ngIf="products.length === 0; else template">Nenhum produto registrado</p></section>
+    <ng-template #template>
+      <app-product-card *ngFor="let product of products"
+      [productName]="product.name"
+      [productPrice]="product.price"
+      [productPhoto]="product.photo"
+      ></app-product-card>
+    </ng-template>
+    <button class="AddButton" mat-mini-fab  (click)="openDialog()"><mat-icon>plus_one</mat-icon></button>
+  </mat-drawer-content>
+</mat-drawer-container>
+

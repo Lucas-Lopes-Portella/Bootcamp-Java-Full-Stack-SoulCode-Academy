@@ -1,0 +1,72 @@
+<mat-toolbar color="warn">
+    <mat-toolbar-row>
+        <h1>REGISTER</h1>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="container">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                Your data
+            </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+            <form action="" #userForm="ngForm" (ngSubmit)="saveUser()">
+                <mat-form-field appearance="fill">
+                    <mat-label>Name</mat-label>
+                    <input 
+                    type="text" 
+                    matInput [(ngModel)]="user.name" 
+                    name="nameField" 
+                    required 
+                    #inputName="ngModel">
+                   <mat-error><span>Required field</span></mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Username</mat-label>
+                    <input type="text" matInput [(ngModel)]="user.username" name="userNameField" required>
+                    <mat-error><span>Required field</span></mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput [(ngModel)]="user.email" name="emailField"  required
+                    email>
+                    <mat-error><span>Required field</span></mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput [(ngModel)]="user.password" name="passwordField" minlength="6" required #inputPassword="ngModel">
+                    <mat-error>
+                       <!--  <span *ngIf="inputPassword.errors?.['required']" >Required field</span> -->
+                       <span *ngIf="inputPassword.getError('required')" >Required field</span>
+
+
+                        <!-- <span *ngIf="inputPassword.errors?.['minlength']" >Password must be at least 6 characters long</span> -->
+                        
+                        <span *ngIf="inputPassword.getError('minlength')" >Password must be at least 6 characters long</span>
+
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-radio-group aria-label="Select an option" [(ngModel)]="user.genre" name="genreField"  required>
+                    <mat-radio-button value="M">Male</mat-radio-button>
+                    <mat-radio-button value="F">Female</mat-radio-button>
+                    <mat-radio-button value="O">Other</mat-radio-button>
+                    
+                </mat-radio-group>
+            
+                <section>
+                    <mat-checkbox [(ngModel)]="user.acceptTermsAndConditions" name="acceptTermsAndConditionsField" required="">
+                        Accept <a href="#"> Terms and conditions</a>
+                    </mat-checkbox>
+                </section>
+                
+               <button type="submit" mat-stroked-button color="link" [disabled]="userForm.invalid">Register</button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+
+
+</div>
